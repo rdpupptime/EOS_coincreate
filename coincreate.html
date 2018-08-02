@@ -262,7 +262,7 @@ $('#res').val(arr.join('-'));
 
 }
 }
-$('#inp1').on('keyup', function(){
+$('#inp1').on('change', function(){
 mapfunc.call(this,function(value){
 if(/^[a-z1-5]*$/.test(value)){
 return true;
@@ -270,13 +270,13 @@ return true;
 return false;
 });
 });
-$('#inp0').on('keyup', function(){
+$('#inp0').on('change', function(){
 mapfunc.call(this);
 });
-$('#inp2').on('keyup', function(){
+$('#inp2').on('change', function(){
 mapfunc.call(this);
 });
-$('#inp3').on('keyup', function(){
+$('#inp3').on('change', function(){
 mapfunc.call(this);
 });
 });
