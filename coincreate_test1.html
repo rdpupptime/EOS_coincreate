@@ -242,41 +242,17 @@
 
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
-	<script type="text/javascript"> 
-$(function () {
-function mapfunc(callback) {
-var val = $(this).val(),
-seg = parseInt($(this).attr('seg')),
-old = $('#res').val();
-old = old == '' ? '---' : old;
-var arr = old.split('-');
-if (callback && typeof callback == 'function') {
-if (!callback.call(this, val)) {
-val = arr[seg];
-$(this).val(val);
-}
-}
-if (val !== arr[seg]) {
-arr[seg] = val;
-$('#res').val(arr.join('-'));
-
-}
-}
-
-$('#inp0').on('change', function(){
-mapfunc.call(this);
-});
-$('#inp1').on('change', function(){
-mapfunc.call(this);
-});
-$('#inp2').on('keyup', function(){
-mapfunc.call(this);
-});
-$('#inp3').on('keyup', function(){
-mapfunc.call(this);
-	
-});
-});
-</script>
-
+	<script type="text/javascript">
+		$(function () {
+            $('input[id^="inp"]').on('keyup',function(){
+                var seg = parseInt($(this).attr('seg')),
+                    val = $(this).val(),
+                    old = $('#res').val();
+                old = old == ''?'---':old;
+                var arr = old.split('-');
+                arr[seg] = val;
+                $('#res').val(arr.join('-'));
+            });
+        });
+	</script>
 </html>
