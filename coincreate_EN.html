@@ -102,7 +102,7 @@
 			                                <div class="col-sm-5">
 												<div class="form-group">
 			                                        <label>Your account name（12-character-name）</label>
-			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="e.g. developstdio" onKeyUp="accountname(this);" >
+			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="e.g. developstdio" >
 													<script>
 													function accountname(v){
 														if(v.value == ''){
@@ -262,15 +262,11 @@ $('#res').val(arr.join('-'));
 
 }
 }
-$('#inp1').on('keyup', function(){
-mapfunc.call(this,function(value){
-if(/^[a-z1-5]*$/.test(value)){
-return true;
-}
-return false;
+
+$('#inp0').on('change', function(){
+mapfunc.call(this);
 });
-});
-$('#inp0').on('keyup', function(){
+$('#inp1').on('change', function(){
 mapfunc.call(this);
 });
 $('#inp2').on('keyup', function(){
@@ -278,6 +274,7 @@ mapfunc.call(this);
 });
 $('#inp3').on('keyup', function(){
 mapfunc.call(this);
+	
 });
 });
 </script>

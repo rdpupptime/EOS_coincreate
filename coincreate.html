@@ -102,7 +102,7 @@
 			                                <div class="col-sm-5">
 												<div class="form-group">
 			                                        <label>接收币账户名（12位EOS账户名）</label>
-			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" onKeyUp="accountname(this);" >
+			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
 													<script>
 													function accountname(v){
 														if(v.value == ''){
@@ -262,22 +262,19 @@ $('#res').val(arr.join('-'));
 
 }
 }
-$('#inp1').on('change', function(){
-mapfunc.call(this,function(value){
-if(/^[a-z1-5]*$/.test(value)){
-return true;
-}
-return false;
-});
-});
+
 $('#inp0').on('change', function(){
 mapfunc.call(this);
 });
-$('#inp2').on('change', function(){
+$('#inp1').on('change', function(){
 mapfunc.call(this);
 });
-$('#inp3').on('change', function(){
+$('#inp2').on('keyup', function(){
 mapfunc.call(this);
+});
+$('#inp3').on('keyup', function(){
+mapfunc.call(this);
+	
 });
 });
 </script>
