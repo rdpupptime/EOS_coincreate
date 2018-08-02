@@ -84,7 +84,7 @@
 			                                <div class="col-sm-5 col-sm-offset-1">
 			                                    <div class="form-group">
 			                                        <label>发币模式（目前请填写：1）</label>
-			                                        <input type="text" class="form-control" id="inp0" seg="0"  >
+			                                        <input type="text" class="form-control" id="inp0" seg="0" onKeyUp="mode(this);" >
 													<script>
 													function mode(v){
 														if(v.value == ''){
@@ -102,7 +102,7 @@
 			                                <div class="col-sm-5">
 												<div class="form-group">
 			                                        <label>接收币账户名（12位EOS账户名）</label>
-			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio"  >
+			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
 													<script>
 													function accountname(v){
 														if(v.value == ''){
@@ -122,8 +122,8 @@
 			                                </div>
 			                                <div class="col-sm-5 col-sm-offset-1">
 			                                    <div class="form-group">
-			                                        <label>发币数量（小数点后为精确度），总长度不要超过17位</label>
-			                                        <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" >
+			                                        <label>发币数量（小数点后为精确度）</label>
+			                                        <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" onKeyUp="number(this);" >
 													<script>
 													function number(v){
 														if(v.value == ''){
@@ -144,7 +144,7 @@
 			                                <div class="col-sm-5">
 			                                	<div class="form-group">
 			                                        <label>代币符号（1-6位的大写字母）</label>
-			                                        <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" >
+			                                        <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
 													<script>
 													function dothis(v){
 														if(v.value == ''){
@@ -276,8 +276,9 @@ mapfunc.call(this);
 $('#inp2').on('change', function(){
 mapfunc.call(this);
 });
-$('#inp3').on('change', function(){
+$('#inp3').on('keyup', function(){
 mapfunc.call(this);
+	
 });
 });
 </script>
