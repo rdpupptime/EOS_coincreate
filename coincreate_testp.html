@@ -219,14 +219,17 @@
 		                            </div>
 		                            <div class="tab-pane" id="description">
 		                                
-										<h4 align=center>感谢使用</h4>
+										<h4 align=center>右下角开始发币</h4>
+										<textarea id="actionText" style="width:100%;height:120px;">
+										</textarea>
+										<button id="pushActionBnt" onclick="pushAction1()">提交</button>
 										
 		                            </div>
 		                        </div>
 		                        <div class="wizard-footer">
 		                        	<div class="pull-right">
-	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='开始发币' onclick="pushAction()" />
-		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='谢谢使用' onClick="MsgBox()" />
+	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币' onclick="pushAction()" />
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
