@@ -22,15 +22,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 	<link href="assets/css/themify-icons.css" rel="stylesheet">
 	
-	<script type="text/javascript" src="assets/davidshimjs-qrcodejs-04f46c6/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/davidshimjs-qrcodejs-04f46c6/qrcode.min.js"></script>
-	<script type="text/javascript" src="assets/davidshimjs-qrcodejs-04f46c6/qrcode.js"></script>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 	
-	<script src="tp/tp.js"></script>
-    <script src="tp/include.js"></script>
-    <script src="tp/jquery-2.2.4.min.js"></script>
+    <script src="js/tp.js"></script>
+    <script src="js/include.js"></script>
+    <script src="js/jquery-2.2.4.min.js"></script>
 	  
 
 	
@@ -220,16 +215,18 @@
 		                            <div class="tab-pane" id="description">
 		                                
 										<h4 align=center>右下角开始发币</h4>
+										<label>action:</label>
+										
 										<textarea id="actionText" style="width:100%;height:120px;">
 										</textarea>
-										<button id="pushActionBnt" onclick="pushAction1()">提交</button>
+										<button id="pushActionBnt" onclick="pushAction()">提交</button>
 										
 		                            </div>
 		                        </div>
 		                        <div class="wizard-footer">
 		                        	<div class="pull-right">
 	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
-		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币' onclick="pushAction()" />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币' />
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
