@@ -21,6 +21,19 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 	<link href="assets/css/themify-icons.css" rel="stylesheet">
+	
+	
+    <script src="tp/tp.js"></script>
+    <script src="tp/include.js"></script>
+    <script src="tp/jquery-2.2.4.min.js"></script>
+	  
+
+	
+	
+	
+	
+	
+	
 </head>
 
 <body>
@@ -45,7 +58,7 @@
 		                    	  <p class="category">Let's create our own EOS coin</p>
 		                    	</div>
 
-								<div class="wizard-navigation">
+							  <div class="wizard-navigation">
 									<div class="progress-with-circle">
 									     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
 									</div>
@@ -62,7 +75,7 @@
 												<div class="icon-circle">
 													<i class="ti-briefcase"></i>
 												</div>
-												邀请人信息
+												注意事项
 											</a>
 										</li>
 			                            <li>
@@ -70,7 +83,7 @@
 												<div class="icon-circle">
 													<i class="ti-pencil"></i>
 												</div>
-												发币须知
+												发行代币
 											</a>
 										</li>
 			                        </ul>
@@ -101,8 +114,8 @@
 			                                </div>
 			                                <div class="col-sm-5">
 												<div class="form-group">
-			                                        <label>接收币账户名（12位EOS账户名）</label>
-			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" onKeyUp="accountname(this);" >
+			                                        <label>您的EOS账户名(不要有多余空格！)</label>
+			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
 													<script>
 													function accountname(v){
 														if(v.value == ''){
@@ -118,7 +131,15 @@
 														}
 													}
 													</script>
-			                                    </div>
+			                                    
+												
+													</div>
+										<script language="javascript">
+											function checkname() //声明标识符
+											{
+											alert("检测流程:\n 1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号\n（例：MOYU）\n2.若无回复，则可以注册\n3.若回复“已被注册”，则不可再注册"); //弹出对话框
+											}
+											</script>
 			                                </div>
 			                                <div class="col-sm-5 col-sm-offset-1">
 			                                    <div class="form-group">
@@ -140,6 +161,9 @@
 													}
 													</script>
 			                                    </div>
+												
+												
+												
 			                                </div>
 			                                <div class="col-sm-5">
 			                                	<div class="form-group">
@@ -162,51 +186,41 @@
 														}
 													}
 													</script>
+													
 			                                    </div>
 			                                </div>
 		                            	</div>
 		                        	</div>
 		                            <div class="tab-pane" id="captain">
-		                                <h5 class="info-text"Fill in the account name of you inviter </h5>
-		                                <div class="row" >
-											
-		                                    <div class="col-sm-offset-10 col-sm-offset-1 col-md-10">
-		                                   
-													<div class="form-group">
-													  <label>邀请人账户名（12位EOS账户名） <br>
-													    此功能暂不开放</label>
-													  <input type="text" class="form-control" id="inp4" seg="4" disabled/>
-											  </div>
+		                                
+		                                    
+												
+												<h4 align=center>检测代币符号是否已经被注册流程:</h4>
+												<font>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</br>（例：MOYU）</br>2.若无回复，则可以注册</br>3.若回复“已被注册”，则不可再注册</font>
+							<h4 align=center>对于发币数量精度说明:</h4>
+												<font>1.发币数量的精度需要按需填写！</br>例如：</br>若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。</br>再例如：</br>发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。</font>
+												
+												
 		                                       
-		                                      </div> 
+		                                     
 		                                   
-		                                </div>
+		                                
 		                            </div>
 		                            <div class="tab-pane" id="description">
-		                                <div class="row">
-		                                    <h5 class="info-text"> 复制下面的MEMO。进入钱包进行转账发币。<br>转账到以下合约账户：<br>emmmmmmmmmmm<br>转账金额：<br>3EOS</h5>
-											
-		                                    
-		                                    <div class="col-sm-6 col-sm-offset-1 col-md-offset-0 col-md-11">
-		                                        <div class="form-group">
-													<label>您的发币MEMO</label>
-													<input type="text" class="form-control" id="res" >
-												</div>
-		                                    </div>
-											
-											
-		                                </div>
-										<h5 class="info-text"> 样例MEMO：1-developstdio-1000000000.0000-MOYU</br>若与样例MEMO格式相同即可直接进入钱包进行转账操作。</br>否则联系作者（微信SSAUTERNE 备注MEMO错误）若由于用户填写错误造成的损失本DAPP概不负责 </h5>
+		                                
+										<h4 align=center>用户须知</h4>
+										<h5>1.用户确认之前所填信息无误即可点击右下角按钮进行发币！</br>2.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</br>3.转账成功后币即可到账，可通过eosflare.io进行查询</br>4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</br>5.由于用户填写错误造成的损失本DApp概不负责</h5>
+										
 		                            </div>
 		                        </div>
 		                        <div class="wizard-footer">
 		                        	<div class="pull-right">
 	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
-		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币' onclick="MsgBox()" />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币'  onclick="pushAction1()"  />
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
-											alert("发币须知：\n1.用户需确认MEMO无误即可进行转账\n2.转账成功后币即可到账，可通过eosflare.io进行查询\n3.用户可以通过PocketEOS钱包、TokenPocket钱包、麦子钱包等自助添加您所发行的代币。添加后可在钱包中显示并转账。\n4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的教程。\n5.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号（例：MOYU），若回复“已被注册”，则不可再注册。若无回复，则可以注册。"); //弹出对话框
+											alert("发币须知：\n1.用户需确认MEMO无误即可自行进行转账（例如通过钱包app或者交易所提币）\n2.转账成功后币即可到账，可通过eosflare.io进行查询\n3.用户可以通过PocketEOS钱包、TokenPocket钱包、麦子钱包等自助添加您所发行的代币。添加后可在钱包中显示并转账。\n4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的教程。\n5.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号（例：MOYU），若回复“已被注册”，则不可再注册。若无回复，则可以注册。"); //弹出对话框
 											}
 											</script>
 		                            </div>
@@ -262,15 +276,11 @@ $('#res').val(arr.join('-'));
 
 }
 }
-$('#inp1').on('keyup', function(){
-mapfunc.call(this,function(value){
-if(/^[a-z1-5]*$/.test(value)){
-return true;
-}
-return false;
+
+$('#inp0').on('change', function(){
+mapfunc.call(this);
 });
-});
-$('#inp0').on('keyup', function(){
+$('#inp1').on('change', function(){
 mapfunc.call(this);
 });
 $('#inp2').on('keyup', function(){
@@ -278,6 +288,11 @@ mapfunc.call(this);
 });
 $('#inp3').on('keyup', function(){
 mapfunc.call(this);
+
+	
+	
+
+	
 });
 });
 </script>
