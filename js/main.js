@@ -84,7 +84,25 @@ function pushAction()
 	
 }
 
-function getTable()
+
+function pushAction1()
+{
+	try {
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmm","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
+        
+		var params = JSON.parse(str);
+        tp.pushEosAction(params).then(data => {
+          var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
+	
+}
+
+function getTable1()
 {
 	try {
         var str = '{"json": true, "code": "'+ $("#tableContract").val() + '", "scope": "' + $("#tableScope").val() + '","table": "' + $("#tableName").val() + '","limit": 30}';
