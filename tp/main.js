@@ -72,9 +72,7 @@ function accountChange()
 function pushAction()
 {
 	try {
-		var str = '{"from":"developsdtio","to":"222222444444","amount":"1","contract":"eosio.token","precision":"4","memo":"123","tokenName":"EOS"}';
-        //var params = JSON.parse($("#actionText").val());
-        var params = JSON.parse(str);
+        var params = JSON.parse($("#actionText").val());
         tp.pushEosAction(params).then(data => {
           var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
           $('.consoleLog').html(result);
@@ -90,7 +88,9 @@ function pushAction()
 function pushAction1()
 {
 	try {
-        var params = JSON.parse($("#actionText").val());
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "developstdio","permission": "active"}],"data": {"from": "developstdio","to": "222222444444","quantity": "0.0001 EOS","memo": "123"}}]}';
+        
+		var params = JSON.parse(str);
         tp.pushEosAction(params).then(data => {
           var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
           $('.consoleLog').html(result);
@@ -102,8 +102,7 @@ function pushAction1()
 	
 }
 
-
-function getTable()
+function getTable1()
 {
 	try {
         var str = '{"json": true, "code": "'+ $("#tableContract").val() + '", "scope": "' + $("#tableScope").val() + '","table": "' + $("#tableName").val() + '","limit": 30}';
