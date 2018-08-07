@@ -23,9 +23,9 @@
 	<link href="assets/css/themify-icons.css" rel="stylesheet">
 	
 	
-    <script src="js/tp.js"></script>
-    <script src="js/include.js"></script>
-    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="tp/tp.js"></script>
+    <script src="tp/include.js"></script>
+    <script src="tp/jquery-2.2.4.min.js"></script>
 	  
 
 	
@@ -114,7 +114,7 @@
 			                                </div>
 			                                <div class="col-sm-5">
 												<div class="form-group">
-			                                        <label>接收此代币的12位EOS账户名</label>
+			                                        <label>您的12位EOS账户名</label>
 			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
 													<script>
 													function accountname(v){
@@ -226,7 +226,7 @@
 		                        <div class="wizard-footer">
 		                        	<div class="pull-right">
 	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
-		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币' />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='开始发币'  onclick="pushAction1()"  />
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
