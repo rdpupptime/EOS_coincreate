@@ -114,7 +114,7 @@
 			                                </div>
 			                                <div class="col-sm-5">
 												<div class="form-group">
-			                                        <label>您的12位EOS账户名</label>
+			                                        <label>您的EOS账户名(不要有多余空格！)</label>
 			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
 													<script>
 													function accountname(v){
@@ -186,40 +186,28 @@
 														}
 													}
 													</script>
-													<center><input type="button" name="按钮" value="检测是否被注册过" onclick="checkname()"  style="background-color: #3C3C3C;color: #FFFFFF;border:none;border-radius:3px;" /></center>
+													
 			                                    </div>
 			                                </div>
 		                            	</div>
 		                        	</div>
 		                            <div class="tab-pane" id="captain">
-		                                <h5 class="info-text"Fill in the account name of you inviter </h5>
-		                                <div class="row" >
-											
-		                                    <div class="col-sm-offset-10 col-sm-offset-1 col-md-10">
-		                                   
-												
-		                                        <div class="form-group">
-													<label>您的代币信息</label>
-													<input type="text" class="form-control" id="res" >
-												</div>
+		                                
 		                                    
 												
-												<h5 class="info-text"> 认真查看代币信息与下面样例信息格式是否一致</br>1-developstdio-1000000000.0000-MOYU</br>若与样例信息格式相同即可直接下一步操作。</br>否则返回上一步修改信息</br>由于用户填写错误造成的损失本DAPP概不负责 </h5>
+												<h4 align=center>检测代币符号是否已经被注册流程:</h4>
+												<h5>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</br>（例：MOYU）</br>2.若无回复，则可以注册</br>3.若回复“已被注册”，则不可再注册</h5>
 												
 												
 		                                       
-		                                      </div> 
+		                                     
 		                                   
-		                                </div>
+		                                
 		                            </div>
 		                            <div class="tab-pane" id="description">
 		                                
-										<h4 align=center>右下角开始发币</h4>
-										<label>action:</label>
-										
-										<textarea id="actionText" style="width:100%;height:120px;">
-										</textarea>
-										<button id="pushActionBnt" onclick="pushAction()">提交</button>
+										<h4 align=center>用户须知</h4>
+										<h5>1.用户确认之前所填信息无误即可点击右下角按钮进行发币！</br>2.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</br>3.转账成功后币即可到账，可通过eosflare.io进行查询</br>4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</br>5.由于用户填写错误造成的损失本DApp概不负责</h5>
 										
 		                            </div>
 		                        </div>
@@ -298,6 +286,10 @@ mapfunc.call(this);
 });
 $('#inp3').on('keyup', function(){
 mapfunc.call(this);
+
+	
+	
+
 	
 });
 });
