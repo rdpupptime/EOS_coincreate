@@ -88,7 +88,7 @@ function pushAction()
 function pushAction1()
 {
 	try {
-		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1') + '","permission": "active"}],"data": {"from": "'+ $('#inp1')+ '","to": "222222444444","quantity": "0.0001 EOS","memo": "' + $('#res')  + '"}}]}';
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "222222444444","quantity": "0.0001 EOS","memo": "' + $('#res').val()  + '"}}]}';
         
 		var params = JSON.parse(str);
         tp.pushEosAction(params).then(data => {
