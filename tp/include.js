@@ -1,1 +1,1 @@
-﻿document.write('<script src="js/main.js?v='+Math.random()+'"></script>')
+﻿document.write('<script src="tp/main.js?v='+Math.random()+'"></script>')
