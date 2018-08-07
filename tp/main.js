@@ -86,6 +86,23 @@ function pushAction()
 	
 }
 
+
+function pushAction1()
+{
+	try {
+        var params = JSON.parse($("#actionText").val());
+        tp.pushEosAction(params).then(data => {
+          var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
+	
+}
+
+
 function getTable()
 {
 	try {
