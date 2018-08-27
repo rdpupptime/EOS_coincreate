@@ -1,33 +1,218 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scale=no">
-	<title>RIDL领取</title>
-	<link rel="shortcut icon" href="favicon.ico">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js1/jquery_2.1.0.min.js"></script>
-    <script src="jsridl/include.js"></script>
-    <script src="jsridl/bootstrap.min.js"></script>
-	<script src="jsridl/tp.js"></script>
-	<script src="jsridl/eos.min.js"></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+	<title></title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+	<!-- CSS Files -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+
+	<!-- CSS Just for demo purpose, don't include it in your project -->
+	<link href="assets/css/demo.css" rel="stylesheet" />
+
+	<!-- Fonts and Icons -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="assets/css/themify-icons.css" rel="stylesheet">
+	
+	
+    <script src="tp/tp.js"></script>
+    <script src="tp/include.js"></script>
+    <script src="tp/jquery-2.2.4.min.js"></script>
+	  
+
+	
+	
+	
+	
+	
+	
 </head>
-<body onload="Main()">
-<div>
-	<select style="width:200px;" id="accountlistid" onchange="WalletChange(this)">
-	</select>
+
+<body>
+	<div class="image-container set-full-height" style="background-image: url('assets/img/paper-3.jpeg')">
+	    <!--   Creative Tim Branding   -->
+	    <a href="#">	    </a>
+
+		
+	    <!--   Big container   -->
+	    <div class="container">
+	        <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+
+		            <!--      Wizard container        -->
+		            <div class="wizard-container">
+		                <div class="card wizard-card" data-color="azure" id="wizard">
+		                    <form action="" method="">
+		                <!--        You can switch " data-color="azure" "  with one of the next bright colors: "blue", "green", "orange", "red"           -->
+
+		                    	<div class="wizard-header">
+		                    	  <h3 class="wizard-title">创造您的EOS代币</h3>
+		                    	  <p class="category">Let's create our own EOS coin</p>
+		                    	</div>
+
+							  <div class="wizard-navigation">
+									<div class="progress-with-circle">
+									     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+									</div>
+									<ul>
+			                            <li>
+											<a href="#details" data-toggle="tab">
+												<div class="icon-circle">
+													<i class="ti-list"></i>
+												</div>
+												账户信息</a>
+										</li>
+			                            <li>
+											<a href="#captain" data-toggle="tab">
+												<div class="icon-circle">
+													<i class="ti-briefcase"></i>
+												</div>
+												注意事项
+											</a>
+										</li>
+			                            <li>
+											<a href="#description" data-toggle="tab">
+												<div class="icon-circle">
+													<i class="ti-pencil"></i>
+												</div>
+												领取空投
+											</a>
+										</li>
+			                        </ul>
+								</div>
+		                        <div class="tab-content">
+		                            <div class="tab-pane" id="details">
+		                            	<div class="row">
+		                                	<div class="col-sm-12">
+		                                    	<h5 class="info-text"> Let's start with the basic details</h5>
+		                                	</div>
+			                                <div class="col-sm-5 col-sm-offset-1">
+			                                
+			                                </div>
+			                                <div class="col-sm-5">
+												<div class="form-group">
+			                                        <label>您的EOS账户名(不要有多余空格！)</label>
+			                                        <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio" >
+													<script>
+													function accountname(v){
+														if(v.value == ''){
+															return false;
+														}
+														//大写转小写
+														v.value = v.value.toLowerCase();
+														//判断是否为英文
+														
+														//判断是否超过长度
+														if(v.value.length > 12){
+															return v.value = v.value.substr(0, 12);
+														}
+													}
+													</script>
+			                                    
+												
+													</div>
+										
+			                                </div>
+			                           
+		                            	</div>
+		                        	</div>
+		                            <div class="tab-pane" id="captain">
+		                                
+		                                    
+												
+												<h4 align=center>领取空投这个过程会占用账户RAM</h4>
+												
+		                                     
+		                                   
+		                                
+		                            </div>
+		                           
+		                        </div>
+		                        <div class="wizard-footer">
+		                        	<div class="pull-right">
+	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='立即领取空投'  onclick="getRIDL()"  />
+										
+		                            </div>
+
+		                            <div class="pull-left">
+		                                <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='上一页' />
+		                            </div>
+		                            <div class="clearfix"></div>
+		                        </div>
+		                    </form>
+		                </div>
+		            </div> <!-- wizard container -->
+		        </div>
+	        </div> <!-- row -->
+      </div> <!--  big container -->
+
+	    <div class="footer">
+	        <div class="container text-center">
+	             
+	        </div>
+	    </div>
 </div>
-<div style="margin:100px auto;text-align:center;vertical-align:middle;">
-	<div>
-	<button style="width:200px;margin:50px auto;">获得空投</button>
-	</div>
-	<div>
-	<textarea style="width:100%;height:200px" id="logid">
-	</textarea>
-	</div>
-</div>
+
 </body>
+
+	<!--   Core JS Files   -->
+	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Wizard -->
+	<script src="assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+	<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
+	<script type="text/javascript"> 
+$(function () {
+function mapfunc(callback) {
+var val = $(this).val(),
+seg = parseInt($(this).attr('seg')),
+old = $('#res').val();
+old = old == '' ? '---' : old;
+var arr = old.split('-');
+if (callback && typeof callback == 'function') {
+if (!callback.call(this, val)) {
+val = arr[seg];
+$(this).val(val);
+}
+}
+if (val !== arr[seg]) {
+arr[seg] = val;
+$('#res').val(arr.join('-'));
+
+}
+}
+
+$('#inp0').on('change', function(){
+mapfunc.call(this);
+});
+$('#inp1').on('change', function(){
+mapfunc.call(this);
+});
+$('#inp2').on('keyup', function(){
+mapfunc.call(this);
+});
+$('#inp3').on('keyup', function(){
+mapfunc.call(this);
+
+	
+	
+
+	
+});
+});
+</script>
+
 </html>
