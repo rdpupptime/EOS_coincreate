@@ -1,114 +1,137 @@
-var g_curwalletname = '';
-var g_curtable = '';
-var g_curaction = '';
-var g_eos = '';
-function Main(){
-	EosjsInit();
-	
-	if(tp.isConnected() == true)
+function main(){
+    console.log("enter main");
+	var result = null;
+    if(tp.isConnected() == true)
 	{
+		$("#constatus").text("已连接").css('color', 'green');
+		
 		tp.getWalletList('eos').then(data => {
-		var accountcnt = data["wallets"]["eos"].length;
-		var $accountlistid = $("#accountlistid");
-		$accountlistid.empty();
-		for(var i = 0; i <= accountcnt; i++)
+		var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+        $('.consoleLog').html(result);
+		var accountCnt = data["wallets"]["eos"].length;
+		var $accountList = $("#accountlist");
+		$accountList.empty();
+		for(var i=0;i<=accountCnt;i++)
 		{	
-			var accountname = data["wallets"]["eos"][i]["name"];
-			$accountlistid.append(new Option(accountname, accountname));
-			if(i == 0)
-			{
-				g_curwalletname = accountname;
-			}
+			var accountName = data["wallets"]["eos"][i]["name"];
+			var accountEosBalance = data["wallets"]["eos"][i]["tokens"]["EOS"];
+			$accountList.append(new Option(accountName+" "+accountEosBalance+" EOS",accountName));
 		}
 		})
+		
+		//push action
+		$("#actionInput").val('{"actions":[{"account":"eosio","name":"buyram","authorization":[{"actor":"wayunggogogo","permission":"active"}],"data":{"payer":"wayunggogogo","receiver":"wayunggogogo", "quant":"0.1000 EOS"}}]}');
+		
+		result = JSON.stringify(JSON.parse($("#actionInput").val()), null, 2);
+		
+		$("#actionText").html(result);
 	}
-	else{
-		console.log("tp is not connected!");
+	else
+	{
+		$("#constatus").text("请在TP钱包开发者模式下打开此网页").css('color', 'red')
 	}
 }
 
-function WalletChange(obj)
-{
-	g_curwalletname = $(obj).val();
-}
-
-function TableChange(obj)
-{
-	g_curtable = $(obj).val();
-}
-
-function ActionChange(obj)
-{
-	g_curaction = $(obj).val();
-}
-
-function pushridlclaim()
+function transfer()
 {
 	if(tp.isConnected() == true)
 	{
-		try {
-			var curaccount = g_curwalletname;
-			
-			var actionstr = '{"actions":[{"account":"ridlridlcoin","name":"claim","authorization":[{"actor":"'+curaccount+'","permission":"active"}],"data":{"claimer":"'+curaccount+'"}}]}';
-			var params = JSON.parse(actionstr);
-			tp.pushEosAction(params).then(data => {
-			  //var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
-			  //$('.consoleLog').html(result);
-			});
-			
-		}
-		catch(e) {
-        //$('.consoleLog').html(e);
-		}
-	}
-	else
-	{
-		console.log("tp is not connected!");
-		
+	tp.eosTokenTransfer({
+    from: 'wayunggogogo',
+    to: 'wayungmihoko',
+    amount: '0.0001',
+    tokenName: 'EOS',
+    precision: 4,
+    contract: 'eosio.token',
+    memo: 'test'
+	});
 	}
 }
 
-function EosjsInit()
+function accountChange()
 {
-    var eosConfig = {
-      chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-      httpEndpoint: 'https://api.eosnewyork.io',
-      verbose: true
-    }
+	if(tp.isConnected() == true)
+	{
+	try {
+	tp.getEosBalance({
+    account: $("#accountlist").val(),
+    contract: 'eosio.token',
+    symbol: 'EOS'
+	}).then(data => {
+		var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+        $('.consoleLog').html(result);
+		$("#balanceval").text(data["data"]["balance"]);
+      })
+	}
+	catch(e) {
+		$('.consoleLog').html(e);
+      }
+	}
+}
+
+function pushAction()
+{
+	try {
+        var params = JSON.parse($("#actionText").val());
+        tp.pushEosAction(params).then(data => {
+          var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
 	
-	g_eos = Eos(eosConfig);
 }
 
-function GetAbi()
+
+function pushAction1()
 {
-	var $contractid = $("#contractid");
-	var $tablelistid = $("#tablelistid");
-	var $actionlistid = $("#actionlistid");
-	g_eos.getAbi($contractid.val(), function(error, data) {
-	if(error == null)
-	{
-		console.log(JSON.stringify(data, null, 2));
-		var tablecnt = data["abi"]["tables"].length;
-		for(var i = 0; i < tablecnt; i++)
-		{
-			var tablename = data["abi"]["tables"][i]["name"];
-			$tablelistid.append(new Option(tablename,tablename));
-		}
-		
-		var actioncnt = data["abi"]["actions"].length;
-		for(var i = 0; i < actioncnt; i++)
-		{
-			var actionname = data["abi"]["actions"][i]["name"];
-			$actionlistid.append(new Option(actionname,actionname));
-		}
-	}
-	else
-	{
-		$("#logid").html(error);
-		console.log(error);
-		$tablelistid.empty();
-		$actionlistid.empty();
-		
-	}
-	})
+	try {
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmm","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
+        
+		var params = JSON.parse(str);
+        tp.pushEosAction(params).then(data => {
+          var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
+	
+}
+
+function getTable1()
+{
+	try {
+        var str = '{"json": true, "code": "'+ $("#tableContract").val() + '", "scope": "' + $("#tableScope").val() + '","table": "' + $("#tableName").val() + '","limit": 30}';
+		var params = JSON.parse(str);
+        tp.getTableRows(params).then(data => {
+		  var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
+	
+}
+
+
+
+function getRIDL()
+{
+	try {
+		var str = '{"actions":[{"account":"ridlridlcoin","name":"claim","authorization":[{"actor":"'+$('#inp1').val() +'","permission":"active"}],"data":{"claimer":"'+$('#inp1').val() +'"}}]}';
+		var params = JSON.parse(str);
+        tp.pushEosAction(params).then(data => {
+          var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
+          $('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        $('.consoleLog').html(e);
+      }
+	
 }
