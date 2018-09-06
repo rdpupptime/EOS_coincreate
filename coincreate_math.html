@@ -100,7 +100,9 @@
 		                            	</div>
 		<a href="javascript:;" class="confirm">3 EOS发币</a>
 	</div>
-
+	<div class="my-protocol right-align">
+		<a href="javascript:;" id="all" >查询发币状态</a>
+	</div>
 	<div style="clear: both;"></div>
 	<ul class="qixi-about">
 		<li>
@@ -108,11 +110,30 @@
 			<div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
 		</li>
 		<li>
+			<h3>检测代币符号是否已经被注册流程</h3>
+			<ul class="application">
+				<li>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</li>
+				（例：MOYU）
+				<li>2.若无回复，则可以注册</li>
+				<li>3.若回复“已被注册”，则不可再注册</li>
+			</ul>
+		</li>
+		<li>
+			<h3>对于发币数量精度说明</h3>
+			<ul class="application">
+				<li>发币数量的精度需要按需填写！</li>
+				<li>例如：</li>
+				若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。
+				<li>再例如</li>
+				发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。
+			</ul>
+		</li>
+		<li>
 			<h3>注意事项</h3>
 			<ul class="application">
 				<li>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</li>
-				<li>2.用户确认之前所填信息无误即可点击右下角按钮进行发币！</li>
-				<li>3.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</li>
+				<li>2.用户确认之前所填信息无误即可点击发币按钮进行发币！</li>
+				<li>3.利用莫与一键发币所发币种名字唯一，不可重复</li>
 				<li>4.转账成功后币即可到账，可通过eosflare.io进行查询</li>
 				<li>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</li>
 				<li>6.由于用户填写错误造成的损失本DApp概不负责</li>
@@ -209,7 +230,10 @@
 	  	 });
     });
 
-   
+   	 $('#all').on('click',function(){
+    	var account = $.mdseos.getAccount();
+    	window.location.href=('https://eosflare.io/account/'+account);
+    })
 
 
 		// 计算指定字符串的字节数
