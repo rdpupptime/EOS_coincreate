@@ -1,118 +1,25 @@
-<!doctype html>
-<html lang="en">
+
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.png" />
-	<title></title>
-
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-	<!-- CSS Files -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="assets/css/paper-bootstrap-wizard.css" rel="stylesheet" />
-
-	<!-- CSS Just for demo purpose, don't include it in your project -->
-	<link href="assets/css/demo.css" rel="stylesheet" />
-
-	<!-- Fonts and Icons -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-	<link href="assets/css/themify-icons.css" rel="stylesheet">
-	
-	
+    <meta charset="UTF-8">
+    <title>莫与一键发币</title>
+    <meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
     <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
     <script src="https://static.medishares.net/js/vue.min.js"></script>
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
-
-	
-	
-	
-	
-	
-	
 </head>
-
 <body>
-	<div class="image-container set-full-height" style="background-image: url('assets/img/paper-3.jpeg')">
-	    <!--   Creative Tim Branding   -->
-	    <a href="#">	    </a>
-
-		
-	    <!--   Big container   -->
-	    <div class="container">
-	        <div class="row">
-		        <div class="col-sm-8 col-sm-offset-2">
-
-		            <!--      Wizard container        -->
-		            <div class="wizard-container">
-		                <div class="card wizard-card" data-color="azure" id="wizard">
-		                    <form action="" method="">
-		                <!--        You can switch " data-color="azure" "  with one of the next bright colors: "blue", "green", "orange", "red"           -->
-
-		                    	<div class="wizard-header">
-		                    	  <h3 class="wizard-title">创造您的EOS代币</h3>
-		                    	  <p class="category">Let's create our own EOS coin</p>
-		                    	</div>
-
-							  <div class="wizard-navigation">
-									<div class="progress-with-circle">
-									     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
-									</div>
-									<ul>
-			                            <li>
-											<a href="#details" data-toggle="tab">
-												<div class="icon-circle">
-													<i class="ti-list"></i>
-												</div>
-												代币信息</a>
-										</li>
-			                            <li>
-											<a href="#captain" data-toggle="tab">
-												<div class="icon-circle">
-													<i class="ti-briefcase"></i>
-												</div>
-												注意事项
-											</a>
-										</li>
-			                            <li>
-											<a href="#description" data-toggle="tab">
-												<div class="icon-circle">
-													<i class="ti-pencil"></i>
-												</div>
-												发行代币
-											</a>
-										</li>
-			                        </ul>
-								</div>
-		                        <div class="tab-content">
-		                            <div class="tab-pane" id="details">
-		                            	<div class="row">
-		                                	<div class="col-sm-12">
-		                                    	<h5 class="info-text"> Let's start with the basic details</h5>
-		                                	</div>
-			                                <div class="col-sm-5 col-sm-offset-1">
-			                                    <div class="form-group">
-			                                        <label>发币模式（目前请填写：1）</label>
-			                                        <input type="text" class="form-control" id="inp0" seg="0" onKeyUp="mode(this);" >
-													<script>
-													function mode(v){
-														if(v.value == ''){
-															return false;
-														}
-														
-														//判断是否超过长度
-														if(v.value.length > 1){
-															return v.value = v.value.substr(0, 1);
-														}
-													}
-													</script>
-			                                    </div>
-			                                </div>
+<div class="mds-group">
+    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+<div class="qixi">
+	<div class="card">
+		  	<div class="row">
+		                          
+			                              
 			                                <div class="col-sm-5">
 												<div class="form-group">
 			                                        <label>您的EOS账户名(不要有多余空格！)</label>
@@ -191,41 +98,48 @@
 			                                    </div>
 			                                </div>
 		                            	</div>
-		                        	</div>
-		                            <div class="tab-pane" id="captain">
-		                                
-		                                    
-												
-												<h4 align=center>检测代币符号是否已经被注册流程:</h4>
-												<font>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</br>（例：MOYU）</br>2.若无回复，则可以注册</br>3.若回复“已被注册”，则不可再注册</font>
-							<h4 align=center>对于发币数量精度说明:</h4>
-												<font>1.发币数量的精度需要按需填写！</br>例如：</br>若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。</br>再例如：</br>发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。</font>
-												
-												
-		                                       
-		                                     
-		                                   
-		                                
-		                            </div>
-		                            <div class="tab-pane" id="description">
-		                                
-										<h4 align=center>用户须知</h4>
-										<h5>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</br>2.用户确认之前所填信息无误即可点击右下角按钮进行发币！</br>3.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</br>4.转账成功后币即可到账，可通过eosflare.io进行查询</br>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</br>6.由于用户填写错误造成的损失本DApp概不负责</h5>
-										
-		                            </div>
-		                        </div>
-		                        <div class="wizard-footer">
-		                        	<div class="pull-right">
-	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
-		                                <div class="mds-group">
-    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+		<a href="javascript:;" class="confirm">3 EOS发币</a>
+	</div>
 
-<div class="qixi">
-		<a href="javascript:;" class="confirm">开始发币</a>
+	<div style="clear: both;"></div>
+	<ul class="qixi-about">
+		<li>
+			<h3>关于莫与一键发币</h3>
+			<div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
+		</li>
+		<li>
+			<h3>注意事项</h3>
+			<ul class="application">
+				<li>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</li>
+				<li>2.用户确认之前所填信息无误即可点击右下角按钮进行发币！</li>
+				<li>3.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</li>
+				<li>4.转账成功后币即可到账，可通过eosflare.io进行查询</li>
+				<li>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</li>
+				<li>6.由于用户填写错误造成的损失本DApp概不负责</li>
+			</ul>
+		</li>
+		<li>
+			<h3>关于作者</h3>
+			<div>关于“莫与一键发币”。任何问题可以通过公众号“深入浅出EOS”联系原作者莫与。</div>
+		</li>
+	</ul>
 </div>
 
+<!-- loading -->
+<div id="app_loading" v-bind:class="{hide:!loading}"></div>
+<!-- 额外js -->
 <script src='https://static.medishares.net/js/plugins/lottie_light.min.js'></script>
-
+<script type="text/javascript">
+  $(function(){
+    lottie.loadAnimation({
+      container: $('#app_loading')[0], // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://static.medishares.net/js/plugins/loading.json' // the path to the animation json
+    });
+  })
+</script>
 
 <script src="https://static.medishares.net/js/eos.min.js"></script>
 <script src="https://static.medishares.net/js/md5.js"></script>
@@ -258,8 +172,8 @@
 	  		permission = $.mdseos.getAccountPermission();
 
 	  	  var mdseos = $.mdseos.getEos();
+
 		  var comment = '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
-	  	  
 	  	  if( computeByteSize(comment) > 256 ){
 	  	  	alert('最多只能写256个字节哦~');
 	  	  	return false;
@@ -288,12 +202,14 @@
 	  	    if(error){
 	  	      alert( JSON.parse(error).error.details[0].message );
 	  	    }else{
-	  	      alert('发币成功！关注“深入浅出EOS”公众号，后台回复“钱包显示”。获取在钱包显示代币教程');
+	  	      alert('发币成功！关注“深入浅出EOS”公众号，后台回复“钱包显示”。获取在钱包显示代币教程！');
 	  	      window.location.reload();
 	  	    }
 	  	  });
 	  	 });
     });
+
+   
 
 
 		// 计算指定字符串的字节数
@@ -321,88 +237,5 @@
 </script>
 
 </div>
-										<script language="javascript">
-											function MsgBox() //声明标识符
-											{
-											alert("发币须知：\n1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦\n2.用户需确认MEMO无误即可自行进行转账（例如通过钱包app或者交易所提币）\n3.转账成功后币即可到账，可通过eosflare.io进行查询\n4.用户可以通过PocketEOS钱包、TokenPocket钱包、麦子钱包等自助添加您所发行的代币。添加后可在钱包中显示并转账。\n4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的教程。\n5.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号（例：MOYU），若回复“已被注册”，则不可再注册。若无回复，则可以注册。"); //弹出对话框
-											}
-											</script>
-		                            </div>
-
-		                            <div class="pull-left">
-		                                <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='上一页' />
-		                            </div>
-		                            <div class="clearfix"></div>
-		                        </div>
-		                    </form>
-		                </div>
-		            </div> <!-- wizard container -->
-		        </div>
-	        </div> <!-- row -->
-      </div> <!--  big container -->
-
-	    <div class="footer">
-	        <div class="container text-center">
-	             
-	        </div>
-	    </div>
-</div>
-
 </body>
-
-	<!--   Core JS Files   -->
-	<script src="assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
-	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
-
-	<!--  Plugin for the Wizard -->
-	<script src="assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>
-
-	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-	<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
-	<script type="text/javascript"> 
-$(function () {
-	$.mdseos.init({"nodes":[{"jsonRpc":"https:\/\/eostestnet.medishares.net","chainID":"cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f"},{"jsonRpc":"https:\/\/eosmainnet.medishares.net","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"},{"jsonRpc":"https:\/\/eosmainnet.medishares.net","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"}]});
-	
-function 
-	
-function mapfunc(callback) {
-var val = $(this).val(),
-seg = parseInt($(this).attr('seg')),
-old = $('#res').val();
-old = old == '' ? '---' : old;
-var arr = old.split('-');
-if (callback && typeof callback == 'function') {
-if (!callback.call(this, val)) {
-val = arr[seg];
-$(this).val(val);
-}
-}
-if (val !== arr[seg]) {
-arr[seg] = val;
-$('#res').val(arr.join('-'));
-
-}
-}
-
-$('#inp0').on('change', function(){
-mapfunc.call(this);
-});
-$('#inp1').on('change', function(){
-mapfunc.call(this);
-});
-$('#inp2').on('keyup', function(){
-mapfunc.call(this);
-});
-$('#inp3').on('keyup', function(){
-mapfunc.call(this);
-
-	
-	
-
-	
-});
-});
-</script>
-
 </html>
