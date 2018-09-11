@@ -315,42 +315,10 @@ mapfunc.call(this);
 <script src="https://cdn.bootcss.com/bignumber.js/7.2.1/bignumber.min.js"></script>
 
 <script>
-Date.prototype.Format = function (fmt) { //author: meizz
-    var o = {
-        "M+": this.getMonth() + 1, //月份
-        "d+": this.getDate(), //日
-        "h+": this.getHours(), //小时
-        "m+": this.getMinutes(), //分
-        "s+": this.getSeconds(), //秒
-        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-        "S": this.getMilliseconds() //毫秒
-    };
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-    return fmt;
-}
 
 $(function(){
 
-    var isTP = tp.isConnected();
-    tpAccount = null
-
-    if (isTP) {
-
-       
-
-        var mySelect = $('.account-ul');
-        tp.getWalletList('eos').then(function (data) {
-            if (data.wallets && data.wallets['eos']) {
-                var walletList = data.wallets['eos'];
-                for(var i = 0; i < walletList.length; i++) {
-                    var accountName = walletList[i].name;
-                    mySelect.append('<li>' + accountName + '</li>')
-                }
-            }
-        })
-    }
+ 
 
     scatter = null;
     seletedTeam = null;
@@ -394,7 +362,7 @@ $(function(){
     });
 
     setTimeout(function (){
-        if (!localStorage.getItem('account') && !scatter && !isTP) {
+        if (!localStorage.getItem('account') && !scatter) {
             Dialog.init("Please install Scatter!");
             return;
         }
@@ -406,7 +374,7 @@ $(function(){
         $("#log-btn").html("Login With Scatter");
     }
 
-		$(".scatter").show();
+	if (!scatter) $(".scatter").show()
 
     function getUrlParam(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -424,23 +392,15 @@ $(function(){
 
     
         
-    }
-    fetchEosPrice();
 
     
 
 
     $("#tixBuy").click(function () {
-        if (!localStorage.getItem('account') && !scatter && !isTP) {
+        if (!localStorage.getItem('account') && !scatter) {
             Dialog.init("Please install Scatter!");
             return;
         }
-
-        if (isTP && !tpAccount) {
-            Dialog.init('please select an EOS Account');
-            return;
-        }
-
 
 
         
@@ -485,9 +445,7 @@ $(function(){
     });
 
     
-    
-
-    
+   
 
     function doLoginSuccess(identity) {
         var account = identity.accounts[0];
@@ -504,8 +462,6 @@ $(function(){
         $("#log-btn").html("Login With Scatter");
         //$(".scatter").show();
     }
-
-
 
 
 });
