@@ -185,7 +185,7 @@ $(function(){
                 sign: true
             };
 			var memo ='1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
-            eos.transfer(account.name, 'emmmmmmmmmmm','3.0000 EOS', memo, options).then(function(tx) {
+            eos.transfer(account.name, 'g4ydqmbwgqge','3.0000 EOS', memo, options).then(function(tx) {
                 Dialog.init("Success!");
             }).catch(function (e) {
                 e = JSON.parse(e);
