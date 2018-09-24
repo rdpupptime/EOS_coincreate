@@ -111,7 +111,7 @@
             </div>
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label color=#ffffff>代币符号（1-6位的大写字母）</label>
+                    <label color=#ffffff>代币符号（1-7位的大写字母）</label>
                     <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
                     <script>
                         function dothis(v) {
@@ -125,8 +125,8 @@
                                 return v.value = v.value.substr(0, v.value.length - 1);
                             }
                             //判断是否超过长度
-                            if (v.value.length > 6) {
-                                return v.value = v.value.substr(0, 6);
+                            if (v.value.length > 7) {
+                                return v.value = v.value.substr(0, 7);
                             }
                         }
                     </script>
