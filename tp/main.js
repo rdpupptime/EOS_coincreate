@@ -140,7 +140,7 @@ function getRIDL()
 function getTEA()
 {
 	try {
-		var str = '{"actions":[{"account":"linzongsheng","name":"signup","authorization":[{"actor":"'+$('#inp1').val() +'","permission":"active"}],"data":{"claimer":"'+$('#inp1').val() +'","quantity":"0.0000 TEA","ram_payer":"'+$('#inp1').val() +'"}}]}';
+		var str = '{"actions":[{"account":"linzongsheng","name":"signup","authorization":[{"actor":"'+$('#inp1').val() +'","permission":"active"}],"data":{"owner":"'+$('#inp1').val() +'","quantity":"0.0000 TEA","ram_payer":"'+$('#inp1').val() +'"}}]}';
 		var params = JSON.parse(str);
         tp.pushEosAction(params).then(data => {
           var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
