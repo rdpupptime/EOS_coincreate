@@ -66,57 +66,29 @@
 
         </div>
         <center>
+			
+			<div class="col-sm-5">
+                <div class="form-group">
+                    <label> <font color="red" size="5"> 莫与糖果盒子          </font></label>
+                </div>
+            </div>
+			
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 接收币账户名（12位EOS账户名）          </font> </label>
+                    <label> <font color="blue" size="3"> 领取200TEA代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
-					<button type="button" id="tixx" class='btn btn-finish btn-fill btn-primary btn-wd' >一键2发币</button>
+					<button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取TEA代币</button>
 					
                 </div>
             </div>
 
-            <div class="col-sm-5 col-sm-offset-1">
-                <div class="form-group">
-                    <label><font color="blue" size="3">发币数量（小数点后为精确度）</font></label>
-                    <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" onKeyUp="number(this);">
-                    <script>
-                        function number(v) {
-                            if (v.value == '') {
-                                return false;
-                            }
-                            //大写转小写
-
-                            //判断是否为英文
-
-                            //判断是否超过长度
-                            if (v.value.length > 17) {
-                                return v.value = v.value.substr(0, 17);
-                            }
-                        }
-                    </script>
-                </div>
-            </div>
+            
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label color=#ffffff><font color="blue" size="3">代币符号（1-7位的大写字母）</font></label>
-                    <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
-                    <script>
-                        function dothis(v) {
-                            if (v.value == '') {
-                                return false;
-                            }
-                            //小写转大写
-                            v.value = v.value.toUpperCase();
-                            //判断是否为英文
-                            if (!/^([A-Za-z]+\s?)*[A-Za-z]$/.test(v.value)) {
-                                return v.value = v.value.substr(0, v.value.length - 1);
-                            }
-                            //判断是否超过长度
-                            if (v.value.length > 7) {
-                                return v.value = v.value.substr(0, 7);
-                            }
-                        }
-                    </script>
+                    <label> <font color="blue" size="3"> 领取1000ENB代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+
+					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
+					
                 </div>
             </div>
         </center>
@@ -131,28 +103,7 @@
                 <div class="row">
                     <div class="col-sm">
 
-                        <div class="tab-content" id="buyArea">
-                            <div class="tab-pane fade show active" id="purchaseArea">
-                                <div class="jumbotron jumbotron-adjust text-light bg-dark jumboshade tab-rounded">
-
-                                    <div class="row">
-                                        <div class="col">
-                                            <div id="purchase" class="tab-pane fade show active" role="tabpanel">
-
-                                                <div class="row" style="position: relative;">
-                                                    <div class="col">
-                                                        <button type="button" id="tixBuy" class="btn btn-block btn-purp btn-lg ticketProcess">一键发币</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -161,44 +112,43 @@
         <div class="mds-group">
             <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
             <div class="my-protocol right-align">
-                <a href="javascript:;" id="all">查询发币状态</a>
+                <a href="javascript:;" id="all" color="red">查询发币状态</a>
             </div>
             <div class="qixi">
                 <ul class="qixi-about">
                     <li>
-                        <h3>关于莫与一键发币</h3>
-                        <div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
+                        <h3>关于莫与糖果盒子</h3>
+                        <div>精选的糖果等你来领！只需要 点击一下 海量EOS糖果随你领！</div>
+						<div>莫与糖果盒子所有糖果均由第三方项目提供</div>
                     </li>
-                    <li>
-                        <h3>检测代币符号是否已经被注册流程</h3>
+					<li>
+                        <h3>关于TEA代币</h3>
                         <ul class="application">
-                            <li>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</li>
-                            （例：MOYU）
-                            <li>2.若无回复，则可以注册</li>
-                            <li>3.若回复“已被注册”，则不可再注册</li>
+                            <li>1.TEA是基于区块链3.0 EOS生态发行茶叶通证，持仓50万TEA以上可以参加每日快照，每周分红！</li>
+                       		<li>2.官方网站：http://www.51jianzhanjun.cn</li>
+							<li>3.公众号是 eos-tea</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于ENB代币</h3>
+                        <ul class="application">
+                            <li>ENB Platform是一个基于EOS Toker的综合服务平台，包括Toker质押、交易及综合理财等业务。</li>
                         </ul>
                     </li>
                     <li>
-                        <h3>对于发币数量精度说明</h3>
+                        <h3>代币领取注意事项</h3>
                         <ul class="application">
-                            <li>发币数量的精度需要按需填写！</li>
-                            <li>例如：</li>
-                            若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。
-                            <li>再例如</li>
-                            发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。
+                            <li>1.后面带有“*”标志的项目，领取空投这个过程会占用账户RAM用以领取代币</li>
+							<li>2.后面带有“*”标志的项目，领取空投会占用大概0.24KiB RAM资源</li>
+							<li>3.后面带有“*”标志的项目，领取空投是即时到账</li>
+							<li>4.后面带有“*”标志的项目，通过声明（signup）操作后，即可获得代币</li>
+							<li>5.“莫与糖果盒子”由莫与独立开发，一切数据由本人在北京时间2018.10.12测试得出，不保证在后续没有变动。关注“深入浅出EOS”公众号，即可获取更多有趣的DAPP哦。</li>
+							<li>6.由于用户填写错误造成的损失本DApp概不负责</li>
+							<li>7.后面带有“*”标志的项目，空投限没有该代币的EOS账户领取</li>
                         </ul>
                     </li>
-                    <li>
-                        <h3>注意事项</h3>
-                        <ul class="application">
-                            <li>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</li>
-                            <li>2.用户确认之前所填信息无误即可点击发币按钮进行发币！</li>
-                            <li>3.利用莫与一键发币所发币种名字唯一，不可重复</li>
-                            <li>4.转账成功后币即可到账，可通过eosflare.io进行查询</li>
-                            <li>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</li>
-                            <li>6.由于用户填写错误造成的损失本DApp概不负责</li>
-                        </ul>
-                    </li>
+                    
+                   
                     <li>
                         <h3>关于作者</h3>
                         <div>关于“莫与一键发币”。任何问题可以通过公众号“深入浅出EOS”联系原作者莫与。</div>
@@ -293,7 +243,7 @@
                     })
                 });
 				
-				 $("#tixx").click(function() {
+				 $("#gettea").click(function() {
                     if (!localStorage.getItem('account') && !scatter) {
                         Dialog.init("Please install Scatter!");
                         return;
@@ -327,7 +277,42 @@
                         doLoginSuccess(identity);
                     })
                 });
+				
+				
+				$("#getenb").click(function() {
+                    if (!localStorage.getItem('account') && !scatter) {
+                        Dialog.init("Please install Scatter!");
+                        return;
+                    }
 
+                    scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+                        var options = {
+                            authorization: account.name + '@' + account.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+                        
+
+                        eos.contract('eosenbpocket', options).then(contract => {
+                contract.signup(account.name, "0.0000 ENB", account.name, options).then(function (tx) {
+                    Dialog.init('Success!');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
+                        doLoginSuccess(identity);
+                    })
+                });
 
                 $("#log-btn").click(function() {
 
