@@ -309,15 +309,25 @@
                             sign: true
                         };
                         var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
-                        eos.transfer(account.name, 'emmmmmmmmmmm', '3.0000 EOS', memo, options).then(function(tx) {
-                            Dialog.init("Success!");
-                        }).catch(function(e) {
-                            e = JSON.parse(e);
-                            Dialog.init('Tx failed: ' + e.error.details[0].message);
-                        })
+
+                        eos.contract('linzongsheng', options).then(contract => {
+                contract.signup(account.name, "0.0000 TEA", account.name, options).then(function (tx) {
+                    Dialog.init('Success!');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
                         doLoginSuccess(identity);
                     })
                 });
+
 
                 $("#log-btn").click(function() {
 
