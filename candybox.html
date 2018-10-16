@@ -112,7 +112,7 @@
         <div class="mds-group">
             <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
             <div class="my-protocol right-align">
-                <a href="javascript:;" id="all" color="red">查询发币状态</a>
+                <a href="javascript:;" id="all" color="red">区块链浏览器</a>
             </div>
             <div class="qixi">
                 <ul class="qixi-about">
@@ -356,8 +356,10 @@
                 }
 
                 $('#all').on('click', function() {
-                    var account = $('#inp1').val();
-                    window.location.href = ('https://eosflare.io/account/' + account);
+                    var account = identity.accounts[0];
+                    console.log(account)
+                    localStorage.setItem('account', JSON.stringify(account));
+                    window.location.href = ('https://eosflare.io/account/' + account.name);
                 })
             })
         </script>
