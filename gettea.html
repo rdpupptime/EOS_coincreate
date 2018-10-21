@@ -526,7 +526,8 @@
 
                 $('#all').on('click', function() {
                     var account = identity.accounts[0];
-                    window.location.href = ('https://eosflare.io/account/' + account.name);
+					if (isTP) {window.location.href = ('https://eosflare.io/account/' + tpAccount);}
+                    else {window.location.href = ('https://eosflare.io/account/' + account.name);}
                 })
             })
         </script>
