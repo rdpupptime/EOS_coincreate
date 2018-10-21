@@ -62,7 +62,11 @@
                 </ul>
             </div>
 
-
+			 <div id="divselect"> 
+                        <em>Select Account</em> 
+                        <ul class="account-ul">
+                        </ul> 
+                    </div> 
 
         </div>
         <center>
@@ -85,7 +89,7 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取100000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取199000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
 					
@@ -186,19 +190,26 @@
 				tpAccount = null
 
 				if (isTP) {
+					$('.dropdown').hide();
+					$('#divselect').show();
 
+					$("#divselect em").click(function(){ 
+						var ul = $("#divselect ul"); 
+						if(ul.css("display")=="none"){ 
+							ul.slideDown("fast"); 
+						}else{ 
+							ul.slideUp("fast"); 
+						} 
+					}); 
+					$("#divselect ul").on('click', 'li', function(){ 
+						var txt = $(this).text(); 
+						$("#divselect em").html(txt); 
 
-					var mySelect = $('.account-ul');
-					tp.getWalletList('eos').then(function (data) {
-						if (data.wallets && data.wallets['eos']) {
-							var walletList = data.wallets['eos'];
-							for(var i = 0; i < walletList.length; i++) {
-								var accountName = walletList[i].name;
-								mySelect.append('<li>' + accountName + '</li>')
-							}
-						}
-					})
-				}
+						$("#divselect ul").hide(); 
+						tpAccount = txt;
+					}); 
+					
+					
                 var scatter = null,
                     seletedTeam = null,
                     money = null,
