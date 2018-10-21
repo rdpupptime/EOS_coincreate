@@ -64,7 +64,7 @@
 
 			 <div id="divselect"> 
 
-						 <em>S<font color="red" size="4"> 登录 </font></em>
+						 <em><font color="red" size="4"> 登录 </font></em>
                         <ul class="account-ul">
                         </ul> 
                     </div> 
@@ -301,7 +301,32 @@
                     })
                 });
 				
-					$("#getloveyou").click(function() {
+					 $("#getloveyou").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'okkkkkkkkkkk',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0 LOVEYOU',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
                     if (!localStorage.getItem('account') && !scatter) {
                         Dialog.init("Please install Scatter!");
                         return;
@@ -316,7 +341,8 @@
                             broadcast: true,
                             sign: true
                         };
-                        
+                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+
                         eos.contract('okkkkkkkkkkk', options).then(contract => {
                 contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
                     Dialog.init('Success!');
@@ -333,15 +359,15 @@
                         
                         doLoginSuccess(identity);
                     })
+                    }
                 });
-				
 				
 				 $("#gettea").click(function() {
                     if (isTP) {
                         tp.pushEosAction({
                             actions: [
                                 {
-                                    account: 'okkkkkkkkkkk',
+                                    account: 'linzongsheng',
                                     name: 'signup',
                                     authorization: [{
                                         actor: tpAccount,
@@ -349,7 +375,7 @@
                                     }],
                                     data: {
                                         owner: tpAccount,
-                                        quantity: '0 LOVEYOU',
+                                        quantity: '0.0000 TEA',
                                         ram_payer:tpAccount,
                                     }
                                  }
@@ -396,8 +422,32 @@
                     })
                     }
                 });
-				
-				$("#getenb").click(function() {
+				 $("#getenb").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'eosenbpocket',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0.0000 ENB',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
                     if (!localStorage.getItem('account') && !scatter) {
                         Dialog.init("Please install Scatter!");
                         return;
@@ -412,7 +462,7 @@
                             broadcast: true,
                             sign: true
                         };
-                        
+                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
 
                         eos.contract('eosenbpocket', options).then(contract => {
                 contract.signup(account.name, "0.0000 ENB", account.name, options).then(function (tx) {
@@ -430,6 +480,7 @@
                         
                         doLoginSuccess(identity);
                     })
+                    }
                 });
 
                 $("#log-btn").click(function() {
