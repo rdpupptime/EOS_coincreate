@@ -75,7 +75,7 @@
 			
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取200TEA代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取200TEA代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取TEA代币</button>
 					
@@ -85,9 +85,18 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取1000ENB代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取1000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
+					
+                </div>
+            </div>
+			
+			<div class="col-sm-5">
+                <div class="form-group">
+                    <label> <font color="blue" size="3"> 领取9999LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+
+					<button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取LOVEYOU</button>
 					
                 </div>
             </div>
@@ -133,6 +142,12 @@
                         <h3>关于ENB代币</h3>
                         <ul class="application">
                             <li>ENB Platform是一个基于EOS Toker的综合服务平台，包括Toker质押、交易及综合理财等业务。</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于LOVEYOU代币</h3>
+                        <ul class="application">
+                            <li>LOVEYOU是基于区块链 3.0 EOS主网发行的生态币， 致力于满足人们对爱情美好的向往，满足人们精神生活中各种场景表达爱的需要，致力于公益活动传递爱。在恋爱、生日、婚庆、纪念日、过年过节等喜庆的日子，使用LOVEYOU表达爱、享受各种高品质服务。并通过持有LOVEYOU享有其升值的权益。</li>
                         </ul>
                     </li>
                     <li>
@@ -242,6 +257,41 @@
                         doLoginSuccess(identity);
                     })
                 });
+				
+					$("#getloveyou").click(function() {
+                    if (!localStorage.getItem('account') && !scatter) {
+                        Dialog.init("Please install Scatter!");
+                        return;
+                    }
+
+                    scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+                        var options = {
+                            authorization: account.name + '@' + account.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+                        
+                        eos.contract('okkkkkkkkkkk', options).then(contract => {
+                contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
+                    Dialog.init('Success!');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
+                        doLoginSuccess(identity);
+                    })
+                });
+				
 				
 				 $("#gettea").click(function() {
                     if (!localStorage.getItem('account') && !scatter) {
