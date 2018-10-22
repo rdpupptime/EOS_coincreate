@@ -62,12 +62,7 @@
                 </ul>
             </div>
 
-			 <div id="divselect"> 
 
-						 <em><font color="red" size="4"> 登录 </font></em>
-                        <ul class="account-ul">
-                        </ul> 
-                    </div> 
 
         </div>
 		
@@ -92,7 +87,7 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取199990ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取1000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
 					
@@ -194,34 +189,15 @@
 
 				if (isTP) {
         $('.dropdown').hide();
-        $('#divselect').show();
+        
+					
+		tp.getCurrentWallet().then(function(data){
+	tpAccount = data.data.name;
+	
+}
+)
 
-        $("#divselect em").click(function(){ 
-            var ul = $("#divselect ul"); 
-            if(ul.css("display")=="none"){ 
-                ul.slideDown("fast"); 
-            }else{ 
-                ul.slideUp("fast"); 
-            } 
-        }); 
-        $("#divselect ul").on('click', 'li', function(){ 
-            var txt = $(this).text(); 
-            $("#divselect em").html(txt); 
-    
-            $("#divselect ul").hide(); 
-            tpAccount = txt;
-        }); 
 
-        var mySelect = $('.account-ul');
-        tp.getWalletList('eos').then(function (data) {
-            if (data.wallets && data.wallets['eos']) {
-                var walletList = data.wallets['eos'];
-                for(var i = 0; i < walletList.length; i++) {
-                    var accountName = walletList[i].name;
-                    mySelect.append('<li>' + accountName + '</li>')
-                }
-            }
-        })
     }
 					
                 var scatter = null,
