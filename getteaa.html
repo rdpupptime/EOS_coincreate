@@ -77,7 +77,7 @@
 			
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取200TEA代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取2200TEA代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取TEA代币</button>
 					
@@ -186,19 +186,6 @@
             $(function() {
 				var isTP = tp.isConnected();
 				tpAccount = null
-
-				if (isTP) {
-        $('.dropdown').hide();
-        
-					
-		tp.getCurrentWallet().then(function(data){
-	tpAccount = data.data.name;
-	
-}
-)
-
-
-    }
 					
                 var scatter = null,
                     seletedTeam = null,
@@ -243,7 +230,19 @@
                 }
 
                 if (!scatter) $(".scatter").show()
-
+				
+				scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+						tpAccount = account;
+                        
+                    })
+				
+				
+				
+				
+				
                 function getUrlParam(name) {
                     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                     var r = window.location.search.substr(1).match(reg);
