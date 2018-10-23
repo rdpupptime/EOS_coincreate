@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/ghostframe.css">
     <link rel="stylesheet" href="css/dialog.css">
     <script src="js/jquery.min.js"></script>
-    <title>Scatter test</title>
+    <title>莫与糖果盒子</title>
 </head>
 
 <body>
@@ -62,9 +62,16 @@
                 </ul>
             </div>
 
+			 <div id="divselect"> 
 
+						 <em><font color="red" size="4"> 点此登录 </font></em>
+                        <ul class="account-ul">
+                        </ul> 
+                    </div> 
 
         </div>
+		
+		
         <center>
 			
 			<div class="col-sm-5">
@@ -75,7 +82,7 @@
 			
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取200TEA代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取200TEA代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取TEA代币</button>
 					
@@ -85,9 +92,18 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取1000ENB代币          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取100ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
+					
+                </div>
+            </div>
+			
+			<div class="col-sm-5">
+                <div class="form-group">
+                    <label> <font color="blue" size="3"> 领取9999LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+
+					<button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取LOVEYOU</button>
 					
                 </div>
             </div>
@@ -135,6 +151,12 @@
                             <li>ENB Platform是一个基于EOS Toker的综合服务平台，包括Toker质押、交易及综合理财等业务。</li>
                         </ul>
                     </li>
+					<li>
+                        <h3>关于LOVEYOU代币</h3>
+                        <ul class="application">
+                            <li>LOVEYOU是基于区块链 3.0 EOS主网发行的生态币， 致力于满足人们对爱情美好的向往，满足人们精神生活中各种场景表达爱的需要，致力于公益活动传递爱。在恋爱、生日、婚庆、纪念日、过年过节等喜庆的日子，使用LOVEYOU表达爱、享受各种高品质服务。并通过持有LOVEYOU享有其升值的权益。</li>
+                        </ul>
+                    </li>
                     <li>
                         <h3>代币领取注意事项</h3>
                         <ul class="application">
@@ -156,6 +178,7 @@
                 </ul>
             </div>
         </div>
+		<script src="js/tp.js"></script>
         <script src="js/alertify.js"></script>
         <script src="js/bootstrap.bundle.js"></script>
         <script src="js/fontawesome-all.min.js"></script>
@@ -166,6 +189,16 @@
 
         <script>
             $(function() {
+				var isTP = tp.isConnected();
+				tpAccount = null
+
+				if (isTP) {
+        			$('.dropdown').hide();
+					tp.getCurrentWallet().then(function(data){	
+					tpAccount = data.data.name;
+					})
+					}
+					
                 var scatter = null,
                     seletedTeam = null,
                     money = null,
@@ -243,7 +276,94 @@
                     })
                 });
 				
+					 $("#getloveyou").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'okkkkkkkkkkk',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0 LOVEYOU',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
+                    if (!localStorage.getItem('account') && !scatter) {
+                        Dialog.init("Please install Scatter!");
+                        return;
+                    }
+
+                    scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+                        var options = {
+                            authorization: account.name + '@' + account.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+
+                        eos.contract('okkkkkkkkkkk', options).then(contract => {
+                contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
+                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
+					else Dialog.init('try again');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
+                        doLoginSuccess(identity);
+                    })
+                    }
+                });
+				
 				 $("#gettea").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'linzongsheng',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0.0000 TEA',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
                     if (!localStorage.getItem('account') && !scatter) {
                         Dialog.init("Please install Scatter!");
                         return;
@@ -276,10 +396,34 @@
                         
                         doLoginSuccess(identity);
                     })
+                    }
                 });
-				
-				
-				$("#getenb").click(function() {
+				 $("#getenb").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'eosenbpocket',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0.0000 ENB',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
                     if (!localStorage.getItem('account') && !scatter) {
                         Dialog.init("Please install Scatter!");
                         return;
@@ -294,7 +438,7 @@
                             broadcast: true,
                             sign: true
                         };
-                        
+                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
 
                         eos.contract('eosenbpocket', options).then(contract => {
                 contract.signup(account.name, "0.0000 ENB", account.name, options).then(function (tx) {
@@ -312,6 +456,7 @@
                         
                         doLoginSuccess(identity);
                     })
+                    }
                 });
 
                 $("#log-btn").click(function() {
@@ -357,7 +502,8 @@
 
                 $('#all').on('click', function() {
                     var account = identity.accounts[0];
-                    window.location.href = ('https://eosflare.io/account/' + account.name);
+					if (isTP) {window.location.href = ('https://eosflare.io/account/' + tpAccount);}
+                    else {window.location.href = ('https://eosflare.io/account/' + account.name);}
                 })
             })
         </script>
