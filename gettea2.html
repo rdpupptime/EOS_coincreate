@@ -108,7 +108,7 @@
 			
 			<div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取dsadasLOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+                    <label> <font color="blue" size="3"> 领取000LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
 
 					<button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取LOVEYOU</button>
 					
@@ -225,7 +225,23 @@
                     host = 'api.tokenika.io',
                     port = 443,
                     chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
-
+				
+				 var currentAccount = null;
+				  // 连接
+				  function connect(){
+					scatter.connect('MY_GAME_NAME').then(connected => {
+					  if(connected){
+						alert('connect success');
+					  }else{
+						alert('connect fail');
+					  }
+					});
+				  }
+				
+				connect();
+				
+				
+				
                 // 登录，获取 EOS 账户
 				  $("#logbtn").click(function (){
 					// scatter.forgetIdentity();
