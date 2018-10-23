@@ -92,7 +92,7 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取1000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取100099ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
 					
@@ -195,6 +195,11 @@
 
 				if (isTP) {
 					
+					tp.getCurrentWallet().then(function(data){
+            tpAccountt = data.data.name;
+						Dialog.init(tpAccountt);
+    
+        })
 											   
         $('.dropdown').hide();
         $('#divselect').show();
