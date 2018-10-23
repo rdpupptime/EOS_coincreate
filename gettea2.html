@@ -58,7 +58,7 @@
                     }
                 </style>
 				<button type="button" id="logbtn" class='btn btn-finish btn-fill btn-primary btn-wd' >登录</button>
-				
+				<button type="button" onclick="transfer()" class='btn btn-finish btn-fill btn-primary btn-wd' >转账</button>
                
             </div>
 
@@ -233,21 +233,22 @@
 					});
 				  }
 				);
-
-                if (localStorage.getItem('account')) {
-                    $("#log-btn").html("Logout");
-                } else {
-                    $("#log-btn").html("Login With Scatter");
-                }
-
-                if (!scatter) $(".scatter").show()
-
-                function getUrlParam(name) {
-                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-                    var r = window.location.search.substr(1).match(reg);
-                    if (r != null) return unescape(r[2]);
-                    return null;
-                }
+				
+				      function transfer(){
+					if (currentAccount == null) {
+						alert('请先获取 EOS 账户');
+					}
+					// alert(network.protocol+'://'+network.host);
+					var eos = scatter.eos(network, Eos);
+					eos.transfer(currentAccount.name, 'giveeostoken', '0.0001 EOS', 'scatter 转账测试').then(result => {
+					  alert('result:'+JSON.stringify(result));
+					}).catch(error => {
+					  alert('error:'+JSON.stringify(error));
+					});
+				  }
+					
+				
+               
 
                 $("#tixBuy").click(function() {
                     if (!localStorage.getItem('account') && !scatter) {
