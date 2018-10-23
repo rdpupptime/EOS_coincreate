@@ -57,17 +57,9 @@
                         text-decoration: none;
                     }
                 </style>
-				<button type="button" onclick="connect()" class='btn btn-finish btn-fill btn-primary btn-wd' >链接</button>
 				<button type="button" id="logbtn" class='btn btn-finish btn-fill btn-primary btn-wd' >登录</button>
 				
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Scatter 登录
-                            <b class="caret"></b>
-                        </a>
-                <ul class="dropdown-menu">
-                    <li style="padding-left: 5px;padding-right: 5px"><a href="#" id="log-btn1">Login With Scatter</a></li>
-
-                </ul>
+               
             </div>
 
 			 <div id="divselect"> 
@@ -201,7 +193,7 @@
 				tpAccount = null
 
 				if (isTP) {
-        			$('.dropdown').hide();
+					$("#logbtn").hide();
 					tp.getCurrentWallet().then(function(data){	
 					tpAccount = data.data.name;
 					})
@@ -217,7 +209,7 @@
 				 var currentAccount = null;
 				  // 连接
 				  function connect(){
-					scatter.connect('MY_GAME_NAME').then(connected => {
+					scatter.connect('candybox').then(connected => {
 					  if(connected){
 						alert('connect success');
 					  }else{
@@ -235,7 +227,7 @@
 					// scatter.forgetIdentity();
 					scatter.getIdentity({accounts:[network]}).then(result => {
 					  currentAccount =  result.accounts[0];
-					  alert('account:'+JSON.stringify(currentAccount));
+					  alert('success');
 					}).catch(error => {
 					  alert('error:'+JSON.stringify(error));
 					});
@@ -301,47 +293,27 @@
                                     }
                                  }
                             ],
-                        }).then(function(data){
-                                        Dialog.init('Success!');
+                        }).then(function(tx){
+                                       	if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
+										else Dialog.init('try again');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
                     }
                     else{
 
-                    if (!localStorage.getItem('account') && !scatter) {
-                        Dialog.init("Please install Scatter!");
-                        return;
-                    }
-
-                    scatter.getIdentity({
-                        accounts: [network]
-                    }).then(function(identity) {
-                        var account = identity.accounts[0];
-                        var options = {
-                            authorization: account.name + '@' + account.authority,
-                            broadcast: true,
-                            sign: true
-                        };
-                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
-
-                        eos.contract('okkkkkkkkkkk', options).then(contract => {
-                contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
-                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
-					else Dialog.init('try again');
-                    //getaccountinfo(account.name);
-                }).catch(function (e) {
-                    console.log(e);
-                    e = JSON.parse(e);
-                    if (e.error.details[0].message != "Invalid packed transaction") {
-                        Dialog.init(e.error.details[0].message);
-                    }
-                });
-            });
-
-                        
-                        doLoginSuccess(identity);
-                    })
+                    eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
+							 Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
                     }
                 });
 				
