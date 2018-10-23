@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>莫与一键发币</title>
+    <title>莫与糖果盒子</title>
     <meta id="i18n_pagename" content="message">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
@@ -34,9 +34,9 @@
 			                                <br /><br />
 			                                <div class="col-sm-5">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
 													
 			                                    
 												
@@ -47,9 +47,9 @@
 												<br /><br />
 											<div class="col-sm-5">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
 													
 			                                    
 												
@@ -170,6 +170,78 @@
 						 data: {
                                      owner: account,
                                      quantity: '0.0000 TEA',
+                                     ram_payer:account,
+                                    }
+					  }
+					]
+				  },function(error, result){
+					if(error){
+					  alert( JSON.parse(error).error.details[0].message );
+					}else{
+					  alert('领取成功！');
+					  window.location.reload();
+					}
+				  });
+				 });
+			});
+		
+		
+		$('#getenb').on('click',function(){
+					$.mdseos.app_get_account(function(){
+					account = $.mdseos.getAccount();
+					permission = $.mdseos.getAccountPermission();
+
+				  var mdseos = $.mdseos.getEos();
+						
+				  //发起购买交易
+				  var transaction = mdseos.transaction({
+					actions:[
+					  {
+						account: 'eosenbpocket',
+						name: 'signup',
+						authorization: [{
+						  actor: account,
+						  permission: permission
+						}],
+						 data: {
+                                     owner: account,
+                                     quantity: '0.0000 ENB',
+                                     ram_payer:account,
+                                    }
+					  }
+					]
+				  },function(error, result){
+					if(error){
+					  alert( JSON.parse(error).error.details[0].message );
+					}else{
+					  alert('领取成功！');
+					  window.location.reload();
+					}
+				  });
+				 });
+			});
+		
+		
+		$('#getloveyou').on('click',function(){
+					$.mdseos.app_get_account(function(){
+					account = $.mdseos.getAccount();
+					permission = $.mdseos.getAccountPermission();
+
+				  var mdseos = $.mdseos.getEos();
+						
+				  //发起购买交易
+				  var transaction = mdseos.transaction({
+					actions:[
+					  {
+						account: 'okkkkkkkkkkk',
+						name: 'signup',
+						authorization: [{
+						  actor: account,
+						  permission: permission
+						}],
+						 data: {
+                                     owner: account,
+                                     quantity: '0 LOVEYOU',
                                      ram_payer:account,
                                     }
 					  }
