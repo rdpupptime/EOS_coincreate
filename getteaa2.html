@@ -185,14 +185,14 @@
         <script>
             $(function() {
 				var isTP = tp.isConnected();
-					tpAccount = null
+				tpAccount = null
 
 				if (isTP) {
         			$('.dropdown').hide();
 					tp.getCurrentWallet().then(function(data){	
 					tpAccount = data.data.name;
 					})
-    			}
+					}
 					
                 var scatter = null,
                     seletedTeam = null,
