@@ -31,56 +31,33 @@
 													</div>
 										
 			                                </div>
-			                                <div class="col-sm-5 col-sm-offset-1">
-			                                    <div class="form-group">
-			                                        <label>发币数量（小数点后为精确度）</label>
-			                                        <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" onKeyUp="number(this);" >
-													<script>
-													function number(v){
-														if(v.value == ''){
-															return false;
-														}
-														//大写转小写
-														
-														//判断是否为英文
-														
-														//判断是否超过长度
-														if(v.value.length > 17){
-															return v.value = v.value.substr(0, 17);
-														}
-													}
-													</script>
-			                                    </div>
-												
-												
-												
-			                                </div>
+			                                <br /><br />
 			                                <div class="col-sm-5">
-			                                	<div class="form-group">
-			                                        <label>代币符号（1-7位的大写字母）</label>
-			                                        <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
-													<script>
-													function dothis(v){
-														if(v.value == ''){
-															return false;
-														}
-														//小写转大写
-														v.value = v.value.toUpperCase();
-														//判断是否为英文
-														if(!/^([A-Za-z]+\s?)*[A-Za-z]$/.test(v.value)){
-															return v.value = v.value.substr(0, v.value.length - 1);
-														}
-														//判断是否超过长度
-														if(v.value.length > 7){
-															return v.value = v.value.substr(0, 7);
-														}
-													}
-													</script>
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
 													
-			                                    </div>
+			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
+												<br /><br />
+											<div class="col-sm-5">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+													
+			                                    
+												
+													</div>
+										
 			                                </div>
 		                            	</div>
-		<a href="javascript:;" class="confirm">3 EOS发币</a>
+		
 	</div>
 	<div class="my-protocol right-align">
 		<a href="javascript:;" id="all" >查询发币状态</a>
@@ -173,7 +150,7 @@
   		pageData.loading = false;
   	});
 		
-		$('.gettea').on('click',function(){
+		$('#gettea').on('click',function(){
 					$.mdseos.app_get_account(function(){
 					account = $.mdseos.getAccount();
 					permission = $.mdseos.getAccountPermission();
