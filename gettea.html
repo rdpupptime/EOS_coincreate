@@ -320,7 +320,8 @@
 
                         eos.contract('okkkkkkkkkkk', options).then(contract => {
                 contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
-                    Dialog.init('Success!');
+                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
+					else Dialog.init('try again');
                     //getaccountinfo(account.name);
                 }).catch(function (e) {
                     console.log(e);
