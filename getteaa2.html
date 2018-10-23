@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/ghostframe.css">
     <link rel="stylesheet" href="css/dialog.css">
+	<script src="js/scatter.min.js"></script>
     <script src="js/jquery.min.js"></script>
-    <title>Scatter test</title>
+    <title>莫与糖果盒子</title>
 </head>
 
 <body>
@@ -52,17 +53,24 @@
                         text-decoration: none;
                     }
                 </style>
+				<button type="button" id="logbtn" class='btn btn-finish btn-fill btn-primary btn-wd' >登录</button>
+				
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Scatter 登录
                             <b class="caret"></b>
                         </a>
                 <ul class="dropdown-menu">
-                    <li style="padding-left: 5px;padding-right: 5px"><a href="#" id="log-btn">Login With Scatter</a></li>
+                    <li style="padding-left: 5px;padding-right: 5px"><a href="#" id="log-btn1">Login With Scatter</a></li>
 
                 </ul>
             </div>
 
+			 <div id="divselect"> 
 
+						 <em><font color="red" size="4"> 点此登录 </font></em>
+                        <ul class="account-ul">
+                        </ul> 
+                    </div> 
 
         </div>
 		
@@ -87,7 +95,7 @@
             
             <div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取1000ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                    <label> <font color="blue" size="3"> 领取100ENB代币*          </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
 
 					<button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取ENB代币</button>
 					
@@ -214,21 +222,17 @@
                     port = 443,
                     chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
 
-                var network = {
-                    protocol: protocol,
-                    host: host,
-                    port: port,
-                    blockchain: 'eos',
-                    chainId: chainId
-                };
-
-                console.log(protocol + "://" + host + ":" + port)
-
-                document.addEventListener('scatterLoaded', function(scatterExtension) {
-                    $(".scatter").hide();
-                    scatter = window.scatter;
-                    eos = scatter.eos(network, Eos, {}, "https");
-                });
+                // 登录，获取 EOS 账户
+				  $("#logbtn").click(function (){
+					// scatter.forgetIdentity();
+					scatter.getIdentity({accounts:[network]}).then(result => {
+					  currentAccount =  result.accounts[0];
+					  alert('account:'+JSON.stringify(currentAccount));
+					}).catch(error => {
+					  alert('error:'+JSON.stringify(error));
+					});
+				  }
+				);
 
                 if (localStorage.getItem('account')) {
                     $("#log-btn").html("Logout");
@@ -315,7 +319,8 @@
 
                         eos.contract('okkkkkkkkkkk', options).then(contract => {
                 contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
-                    Dialog.init('Success!');
+                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
+					else Dialog.init('try again');
                     //getaccountinfo(account.name);
                 }).catch(function (e) {
                     console.log(e);
@@ -496,7 +501,8 @@
 
                 $('#all').on('click', function() {
                     var account = identity.accounts[0];
-                    window.location.href = ('https://eosflare.io/account/' + account.name);
+					if (isTP) {window.location.href = ('https://eosflare.io/account/' + tpAccount);}
+                    else {window.location.href = ('https://eosflare.io/account/' + currentAccount);}
                 })
             })
         </script>
