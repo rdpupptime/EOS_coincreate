@@ -57,6 +57,7 @@
                         text-decoration: none;
                     }
                 </style>
+				<button type="button" onclick="connect()" class='btn btn-finish btn-fill btn-primary btn-wd' >链接</button>
 				<button type="button" id="logbtn" class='btn btn-finish btn-fill btn-primary btn-wd' >登录</button>
 				
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -108,7 +109,7 @@
 			
 			<div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取000LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+                    <label> <font color="blue" size="3"> 领取999000LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
 
 					<button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取LOVEYOU</button>
 					
@@ -206,26 +207,13 @@
 					})
 					}
 					
-                var scatter = null,
-                    seletedTeam = null,
-                    money = null,
-                    eosPrice = null,
-                    endTime = null,
-                    roundMask = null,
-                    roundRedMask = null,
-                    roundKey = null,
-                    isEnded = false,
-                    isStarted = false,
-                    isEnded = false,
-                    roundBlueMask = null,
-                    startTime = null,
-                    endTime = null,
-                    base = 1000000,
-                    protocol = 'https',
-                    host = 'api.tokenika.io',
-                    port = 443,
-                    chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
-				
+                var network = {
+				blockchain:'eos',
+				protocol:'https',
+				host:'mainnet.eoscannon.io',
+				port:443,
+				chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+			  };
 				 var currentAccount = null;
 				  // 连接
 				  function connect(){
