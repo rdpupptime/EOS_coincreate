@@ -33,8 +33,11 @@
         <script src="js/moment.min.js"></script>
         <script src="https://cdn.bootcss.com/bignumber.js/7.2.1/bignumber.min.js"></script>
 
-	<script>
-				$(function() {
+
+    <script>
+      // EOS RPC 网络设置
+
+		  $(function() {
 			var isTP = tp.isConnected();
 				tpAccount = null
 
@@ -44,12 +47,7 @@
 					tpAccount = data.data.name;
 					})
 					}
-		}
-		</script>
-    <script>
-      // EOS RPC 网络设置
-
-		  
+		})
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -189,7 +187,7 @@
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
       
-      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录TP</button></div>
+      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
