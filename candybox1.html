@@ -79,7 +79,7 @@
           alert('error:'+JSON.stringify(error));
         });
       }
-		login();
+		
       // 转账
       function transfer(){
         if (currentAccount == null) {
@@ -95,6 +95,32 @@
       }
 		
 		function gettea(){
+			if(isTP)
+				{
+					tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'eosenbpocket',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0.0000 ENB',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        if (data.result) Dialog.init('Success!');
+						else {Dialog.init('Try again');}
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+				}
+			else {
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
@@ -118,6 +144,7 @@
 						});
 					});
       }
+		}
 		
 		
 		
