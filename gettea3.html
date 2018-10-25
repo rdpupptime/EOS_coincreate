@@ -24,11 +24,23 @@
     <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
     <script src="https://static.medishares.net/js/vue.min.js"></script>
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+	  <script src="js/tp.js"></script>
+        <script src="js/alertify.js"></script>
+        <script src="js/bootstrap.bundle.js"></script>
+        <script src="js/fontawesome-all.min.js"></script>
+        <script src="js/eos.min.js"></script>
+        <script src="js/mDialogMin.js"></script>
+        <script src="js/moment.min.js"></script>
+        <script src="https://cdn.bootcss.com/bignumber.js/7.2.1/bignumber.min.js"></script>
 	  
 
 	
     <script>
       // EOS RPC 网络设置
+	var isTP = tp.isConnected();
+	tpAccount = null
+
+				
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -98,6 +110,64 @@
 					});
       }
 		
+		
+		
+		
+		function getloveyou(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+
+
+      function getenb(){
+
+      	if 
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('eosenbpocket', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		
+		
+		
 		function eosflare(){
         	if (currentAccount == null) {
             alert('请先登录 EOS 账户');
@@ -111,11 +181,10 @@
 	  <div class="mds-group">
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
-      <div class="col-md-12"><button type="button" class="btn btn-primary btn-lg btn-block" onclick="connect()">连接11dasd</button></div>
+
+      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-success btn-lg btn-block" onclick="login()">获取 EOS 账户</button></div>
-      <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-warning btn-lg btn-block" onclick="transfer()">转账</button></div>
+
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
 	<br /><br />
@@ -126,7 +195,7 @@
 			                              
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取121233TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
 													
@@ -140,7 +209,7 @@
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()" >一键领取啊啊啊</button>
+			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()" >一键领取</button>
 													
 			                                    
 												
@@ -151,7 +220,7 @@
 												<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取999911LOVEYOU*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
 													
