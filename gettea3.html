@@ -4,7 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
@@ -15,6 +17,14 @@
     <!-- Scatter JS. -->
     <script src="js/scatter.min.js"></script>
     <script src="js/eos.min.js"></script>
+	  
+	<link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+	  
+
 
     <script>
       // EOS RPC 网络设置
@@ -46,6 +56,7 @@
           alert('error:'+JSON.stringify(error));
         });
       }
+		login();
       // 转账
       function transfer(){
         if (currentAccount == null) {
@@ -59,17 +70,76 @@
           alert('error:'+JSON.stringify(error));
         });
       }
+		$(function() {
+				var isTP = tp.isConnected();
+				tpAccount = null
+
+				if (isTP) {
+        			$('.dropdown').hide();
+					tp.getCurrentWallet().then(function(data){	
+					tpAccount = data.data.name;
+					})
+					}
+						 $("#gettea").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'linzongsheng',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0.0000 TEA',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        Dialog.init('Success!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
+               		if (currentAccount == null) {
+						alert('请先获取 EOS 账户');
+					}
+					var eos = scatter.eos(network, Eos);
+					eos.contract('linzongsheng', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+						
+
+                    }
+                });
+			
+			$('#all').on('click',function(){
+			if (isTP) {window.location.href=('https://eosflare.io/account/'+tpAccount);}
+			else {window.location.href=('https://eosflare.io/account/'+currentAccount.name);}
+    })
+		}
     </script>
   </head>
   <body>
 	  <div class="mds-group">
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
-	<div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="connect()">连接</button></div>
+      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">获取 EOS 账户</button></div>
-      <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="transfer()">转账</button></div>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
 	<br /><br />
