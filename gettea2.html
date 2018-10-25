@@ -15,7 +15,6 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -23,63 +22,64 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/ghostframe.css">
     <link rel="stylesheet" href="css/dialog.css">
-	<script src="js/scatter.min.js"></script>
-	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+	
+	
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js" integrity="sha384-knhBOwpf8/28D6ygAjJeb0STNDZqfPbKaWQ8wIz/xgSc0xXwKsKhNype8fmfMka2" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-    <script src="js/jquery.min.js"></script>
+    <!-- Scatter JS. -->
+    <script src="js/scatter.min.js"></script>
+    <script src="js/eos.min.js"></script>
+	
     <title>莫与糖果盒子</title>
 </head>
 
 <body>
-    <div class="image-container set-full-height" style="background-image: url('assets/img/letter1.jpg')">
-        <div id="main-wrapper">
-            <div class="dropdown">
-                <style type="text/css">
-                    a:link {
-                        color: #3C3C3C;
-                        text-decoration: underline;
-                    }
-                    
-                    a:visited {
-                        color: #0000FF;
-                        text-decoration: none;
-                    }
-                    
-                    a:hover {
-                        color: #FF00FF;
-                        text-decoration: none;
-                    }
-                    
-                    a:active {
-                        color: #D200D2;
-                        text-decoration: none;
-                    }
-                </style>
-				<button type="button" id="logbtn" class='btn btn-finish btn-fill btn-primary btn-wd' >登录</button>
-				<button type="button" onclick="transfer1()" class='btn btn-finish btn-fill btn-primary btn-wd' >转账</button>
-               <div class="col-md-12"><button type="button" class="btn btn-warning btn-lg btn-block" onclick="transfer1()">转账</button></div>
-            </div>
-
-			 <div id="divselect"> 
-
-						 <em><font color="red" size="4"> 点此登录 </font></em>
-                        <ul class="account-ul">
-                        </ul> 
-                    </div> 
-
-        </div>
-		
-		
-        <center>
+<div class="mds-group">
+    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+<div class="qixi">
+	<button type="button" id="connect" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="connect()" >链接scatter</button>
+	<button type="button" id="log" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="login()">登录</button>
+	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
+	<br /><br />
+	<div align="center">    </div>
+	<div class="card">
+		  	<div class="row">
 			
-			<div class="col-sm-5">
-                <div class="form-group">
-                    <label> <font color="red" size="5"> 莫与糖果盒子          </font></label>
-                </div>
-            </div>
-			
+											<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" onclick="transfer()" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
+				<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
             <div class="col-sm-5">
                 <div class="form-group">
                     <label> <font color="blue" size="3"> 领取200TEA代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </label>
@@ -101,36 +101,22 @@
 			
 			<div class="col-sm-5">
                 <div class="form-group">
-                    <label> <font color="blue" size="3"> 领取999000LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+                    <label> <font color="blue" size="3"> 领取9999LOVEYOU*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
 
 					<button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取LOVEYOU</button>
 					
                 </div>
             </div>
-        </center>
+		</div>
+       
 
-        <module-template data-is="state-play">
 
-            <div style="clear: both;">
-            </div>
-            <div style="clear: both;"></div>
+	</div>
 
-            <div class="container" style="margin-top:-1rem;">
-                <div class="row">
-                    <div class="col-sm">
-
-                        
-                    </div>
-                </div>
-            </div>
-        </module-template>
-
-        <div class="mds-group">
-            <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
             <div class="my-protocol right-align">
-                <a href="javascript:;" id="all" color="red">区块链浏览器</a>
-            </div>
-            <div class="qixi">
+			<a href="javascript:;" id="all" >查询领取状态</a>
+			</div>
+			<div style="clear: both;"></div>
                 <ul class="qixi-about">
                     <li>
                         <h3>关于莫与糖果盒子</h3>
@@ -176,8 +162,8 @@
                         <div>关于“莫与一键发币”。任何问题可以通过公众号“深入浅出EOS”联系原作者莫与。</div>
                     </li>
                 </ul>
-            </div>
         </div>
+		
 		<script src="js/tp.js"></script>
         <script src="js/alertify.js"></script>
         <script src="js/bootstrap.bundle.js"></script>
@@ -193,48 +179,47 @@
 				tpAccount = null
 
 				if (isTP) {
-					$("#logbtn").hide();
+        			$('.dropdown').hide();
 					tp.getCurrentWallet().then(function(data){	
 					tpAccount = data.data.name;
 					})
 					}
 					
-                var network = {
-				blockchain:'eos',
-				protocol:'https',
-				host:'mainnet.eoscannon.io',
-				port:443,
-				chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
-			  };
-				 var currentAccount = null;
-				  // 连接
-				  function connect(){
-					scatter.connect('candybox').then(connected => {
-					  if(connected){
-						alert('connect success');
-					  }else{
-						alert('connect fail');
-					  }
-					});
-				  }
+                
+
+                // EOS RPC 网络设置
+      var network = {
+        blockchain:'eos',
+        protocol:'https',
+        host:'mainnet.eoscannon.io',
+        port:443,
+        chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+      };
+      var currentAccount = null;
+      // 连接
+      function connect(){
+        scatter.connect('MY_GAME_NAME').then(connected => {
+          if(connected){
+            alert('connect success');
+          }else{
+            alert('connect fail');
+          }
+        });
+      }
 				
-				connect();
 				
-				
-				
-                // 登录，获取 EOS 账户
-				  $("#logbtn").click(function (){
+				 // 登录，获取 EOS 账户
+				  function login(){
 					// scatter.forgetIdentity();
 					scatter.getIdentity({accounts:[network]}).then(result => {
 					  currentAccount =  result.accounts[0];
-					  alert('success');
+					  alert('account:'+JSON.stringify(currentAccount));
 					}).catch(error => {
 					  alert('error:'+JSON.stringify(error));
 					});
 				  }
-				);
-				
-				    function transfer1(){
+				  // 转账
+				  function transfer(){
 					if (currentAccount == null) {
 						alert('请先获取 EOS 账户');
 					}
@@ -246,9 +231,7 @@
 					  alert('error:'+JSON.stringify(error));
 					});
 				  }
-					
-				
-               
+                
 
                 $("#tixBuy").click(function() {
                     if (!localStorage.getItem('account') && !scatter) {
@@ -294,27 +277,47 @@
                                     }
                                  }
                             ],
-                        }).then(function(tx){
-                                       	if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
-										else Dialog.init('try again');
+                        }).then(function(data){
+                                        Dialog.init('Success!');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
                     }
                     else{
 
-                    eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
-							 Dialog.init('Success!');
-							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
-						});
-					});
+                    if (!localStorage.getItem('account') && !scatter) {
+                        Dialog.init("Please install Scatter!");
+                        return;
+                    }
+
+                    scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+                        var options = {
+                            authorization: account.name + '@' + account.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+
+                        eos.contract('okkkkkkkkkkk', options).then(contract => {
+                contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
+                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
+					else Dialog.init('try again');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
+                        doLoginSuccess(identity);
+                    })
                     }
                 });
 				
@@ -483,7 +486,7 @@
                 $('#all').on('click', function() {
                     var account = identity.accounts[0];
 					if (isTP) {window.location.href = ('https://eosflare.io/account/' + tpAccount);}
-                    else {window.location.href = ('https://eosflare.io/account/' + currentAccount);}
+                    else {window.location.href = ('https://eosflare.io/account/' + account.name);}
                 })
             })
         </script>
