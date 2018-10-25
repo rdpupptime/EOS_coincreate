@@ -24,21 +24,12 @@
     <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
     <script src="https://static.medishares.net/js/vue.min.js"></script>
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
-	  <script src="js/tp.js"></script>
-        <script src="js/alertify.js"></script>
-        <script src="js/bootstrap.bundle.js"></script>
-        <script src="js/fontawesome-all.min.js"></script>
-        <script src="js/eos.min.js"></script>
-        <script src="js/mDialogMin.js"></script>
-        <script src="js/moment.min.js"></script>
-        <script src="https://cdn.bootcss.com/bignumber.js/7.2.1/bignumber.min.js"></script>
+
 	  
 
 	
     <script>
       // EOS RPC 网络设置
-	var isTP = tp.isConnected();
-	tpAccount = null
 
 				
       var network = {
@@ -70,7 +61,6 @@
           alert('error:'+JSON.stringify(error));
         });
       }
-		login();
       // 转账
       function transfer(){
         if (currentAccount == null) {
