@@ -53,12 +53,13 @@
         // scatter.forgetIdentity();
         scatter.getIdentity({accounts:[network]}).then(result => {
           currentAccount =  result.accounts[0];
-          alert('account:'+JSON.stringify(currentAccount));
+          alert('登录成功！');
+			$('#loginbtn').hide();
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
       }
-		login();
+		
       // 转账
       function transfer(){
         if (currentAccount == null) {
@@ -166,7 +167,7 @@
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
       
-      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
