@@ -29,15 +29,6 @@
 	
     <script>
       // EOS RPC 网络设置
-	var ismath=false;
-	
-	$.mdseos.init({"nodes":[{"jsonRpc":"https:\/\/eostestnet.medishares.net","chainID":"cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f"},{"jsonRpc":"https:\/\/eosmainnet.medishares.net","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"},{"jsonRpc":"https:\/\/eosmainnet.medishares.net","chainID":"aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906"}]});
-
-  	$.mdseos.app_get_account(function(){
-  		ismath=true;
-  	});
-		Dialog.init(ismath);
-		console.log(ismath);
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -137,45 +128,6 @@
 		
 		
 		function getenb(){
-			
-			if (ismath)
-				{
-									$.mdseos.app_get_account(function(){
-					account = $.mdseos.getAccount();
-					permission = $.mdseos.getAccountPermission();
-
-				  var mdseos = $.mdseos.getEos();
-						
-				  //发起购买交易
-				  var transaction = mdseos.transaction({
-					actions:[
-					  {
-						account: 'eosenbpocket',
-						name: 'signup',
-						authorization: [{
-						  actor: account,
-						  permission: permission
-						}],
-						 data: {
-                                     owner: account,
-                                     quantity: '0.0000 ENB',
-                                     ram_payer:account,
-                                    }
-					  }
-					]
-				  },function(error, result){
-					if(error){
-					  alert( JSON.parse(error).error.details[0].message );
-					}else{
-					  alert('领取成功！');
-					  window.location.reload();
-					}
-				  });
-				 });
-				}
-			else {
-			
-			
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
@@ -199,7 +151,6 @@
 						});
 					});
       }
-		}
 		
 		
 		function eosflare(){
