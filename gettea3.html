@@ -49,6 +49,7 @@
       }
       // 登录，获取 EOS 账户
       function login(){
+		  connect();
         // scatter.forgetIdentity();
         scatter.getIdentity({accounts:[network]}).then(result => {
           currentAccount =  result.accounts[0];
@@ -61,7 +62,7 @@
       // 转账
       function transfer(){
         if (currentAccount == null) {
-            alert('请先获取 EOS 账户');
+            alert('请先登录 EOS 账户');
         }
         // alert(network.protocol+'://'+network.host);
         var eos = scatter.eos(network, Eos);
@@ -74,7 +75,7 @@
 		
 		function gettea(){
         if (currentAccount == null) {
-            alert('请先获取 EOS 账户');
+            alert('请先登录 EOS 账户');
         }
         // alert(network.protocol+'://'+network.host);
         var eos = scatter.eos(network, Eos);
@@ -98,7 +99,9 @@
       }
 		
 		function eosflare(){
-        
+        	if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        	}
 			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
       }
 
