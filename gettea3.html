@@ -72,7 +72,25 @@
         });
       }
 		
-		
+		function gettea(){
+        if (currentAccount == null) {
+            alert('请先获取 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+        eos.contract('linzongsheng', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
 
     </script>
   </head>
@@ -95,7 +113,7 @@
 			                              
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取123TEA代币*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
 													
@@ -133,7 +151,7 @@
 		
 	</div>
 	<div class="my-protocol right-align">
-		<a href="javascript:;" id="all" >查询领取状态</a>
+		<a href="javascript:;" id="all" onclick="transfer()">查询领取状态</a>
 	</div>
 	<div style="clear: both;"></div>
 	<ul class="qixi-about">
