@@ -125,6 +125,34 @@
 					});
       }
 		
+		
+		
+		function getenb(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('eosenbpocket', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		
+		
 		function eosflare(){
         	if (currentAccount == null) {
             alert('请先登录 EOS 账户');
@@ -137,11 +165,9 @@
 	  <div class="mds-group">
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
-      <div class="col-md-12"><button type="button" class="btn btn-primary btn-lg btn-block" onclick="connect()">连接11dasd</button></div>
+      
+      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-success btn-lg btn-block" onclick="login()">获取 EOS 账户</button></div>
-      <br><br><br>
-      <div class="col-md-12"><button type="button" class="btn btn-warning btn-lg btn-block" onclick="transfer()">转账</button></div>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
 	<br /><br />
