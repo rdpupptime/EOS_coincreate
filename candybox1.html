@@ -36,8 +36,18 @@
 	
     <script>
       // EOS RPC 网络设置
-		var isTP = tp.isConnected();
-		tpAccount = null
+		$(function() {
+			var isTP = tp.isConnected();
+				tpAccount = null
+
+				if (isTP) {
+        			$('#loginbtn').hide();
+					tp.getCurrentWallet().then(function(data){	
+					tpAccount = data.data.name;
+					})
+					}
+		}
+		  
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -47,16 +57,7 @@
       };
       var currentAccount = null;
 		//
-		function tpconnect()
-		{
-			if (isTP) {
-        			$('#loginbtn').hide();
-					tp.getCurrentWallet().then(function(data){	
-					tpAccount = data.data.name;
-					})
-					}
-		}
-		tpconnect();
+
       // 连接
       function connect(){
         scatter.connect('MY_GAME_NAME').then(connected => {
