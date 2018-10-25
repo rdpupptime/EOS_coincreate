@@ -98,6 +98,33 @@
 					});
       }
 		
+		
+		
+		function getloveyou(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		
 		function eosflare(){
         	if (currentAccount == null) {
             alert('请先登录 EOS 账户');
@@ -125,7 +152,7 @@
 			                              
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取121233TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
 													
@@ -139,7 +166,7 @@
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()" >一键领取啊啊啊</button>
+			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getenb()" >一键领取</button>
 													
 			                                    
 												
@@ -150,9 +177,9 @@
 												<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取999911LOVEYOU*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getloveyou()">一键领取</button>
 													
 			                                    
 												
