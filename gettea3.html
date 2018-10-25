@@ -26,7 +26,7 @@
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
 	  
 
-
+	
     <script>
       // EOS RPC 网络设置
       var network = {
@@ -71,7 +71,32 @@
           alert('error:'+JSON.stringify(error));
         });
       }
-
+		
+		function gettea(){
+        if (currentAccount == null) {
+            alert('请先获取 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+        eos.contract('linzongsheng', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		$(function(){
+			
+			 $('#all').on('click',function(){
+				window.location.href=('https://eosflare.io/account/'+currentAccount.name);
+			})
+		}
     </script>
   </head>
   <body>
@@ -95,7 +120,7 @@
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
 													
 			                                    
 												
@@ -107,7 +132,7 @@
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="getenb" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()" >一键领取</button>
 													
 			                                    
 												
