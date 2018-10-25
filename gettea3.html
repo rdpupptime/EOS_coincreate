@@ -78,6 +78,11 @@
         }
         // alert(network.protocol+'://'+network.host);
         var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
         eos.contract('linzongsheng', options).then(contract => {
 						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
 							Dialog.init('Success!');
@@ -143,7 +148,7 @@
 												<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取999911LOVEYOU*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
 													
