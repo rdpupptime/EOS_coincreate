@@ -24,14 +24,11 @@
     <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
     <script src="https://static.medishares.net/js/vue.min.js"></script>
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
-
 	  
 
 	
     <script>
       // EOS RPC 网络设置
-
-				
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -61,6 +58,7 @@
           alert('error:'+JSON.stringify(error));
         });
       }
+		login();
       // 转账
       function transfer(){
         if (currentAccount == null) {
@@ -158,23 +156,24 @@
 		
 		
 		
+		
 		function eosflare(){
         	if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         	}
 			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
       }
-
     </script>
   </head>
   <body>
 	  <div class="mds-group">
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
-
-      <div class="col-md-12"><button type="button" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <div class="col-md-12"><button type="button" class="btn btn-primary btn-lg btn-block" onclick="connect()">连接11dasd</button></div>
       <br><br><br>
-
+      <div class="col-md-12"><button type="button" class="btn btn-success btn-lg btn-block" onclick="login()">获取 EOS 账户</button></div>
+      <br><br><br>
+      <div class="col-md-12"><button type="button" class="btn btn-warning btn-lg btn-block" onclick="transfer()">转账</button></div>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
 	<br /><br />
@@ -185,7 +184,7 @@
 			                              
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取121233TEA代币*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
 													
@@ -199,7 +198,7 @@
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()" >一键领取</button>
+			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getenb()" >一键领取啊啊啊</button>
 													
 			                                    
 												
@@ -210,9 +209,9 @@
 												<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取999911LOVEYOU*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取</button>
+			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getloveyou()">一键领取</button>
 													
 			                                    
 												
