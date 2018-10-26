@@ -128,8 +128,8 @@
         <div class="mds-group">
             <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
             <div class="my-protocol right-align">
-                <a href="javascript:;" id="all" color="red">区块链浏览器</a>
-            </div>
+		<a href="javascript:;" id="all" onclick="eosflare()">查询领取状态</a>
+	</div>
             <div class="qixi">
                 <ul class="qixi-about">
                     <li>
@@ -503,11 +503,12 @@
                     //$(".scatter").show();
                 }
 
-                $('#all').on('click', function() {
-                    var account = identity.accounts[0];
-					if (isTP) {window.location.href = ('https://eosflare.io/account/' + tpAccount);}
-                    else {window.location.href = ('https://eosflare.io/account/' + account.name);}
-                })
+                function eosflare(){
+        	if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        	}
+			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
+      }
             })
         </script>
 </body>
