@@ -51,7 +51,7 @@
           currentAccount =  result.accounts[0];
           
 			
-			document.getElementById("loginbtn").value==currentAccount;
+			$('#loginbtn').hide();
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
