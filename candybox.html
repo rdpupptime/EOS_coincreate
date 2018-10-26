@@ -51,7 +51,8 @@
           currentAccount =  result.accounts[0];
           
 			
-			$('#loginbtn').hide();
+			$("#loginbtn").attr("disabled", true);
+			$("#loginbtn").html(currentAccount.name).css('color', '#1E90FF');
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
