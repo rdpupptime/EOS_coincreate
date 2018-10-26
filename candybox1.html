@@ -53,7 +53,7 @@
 			
 			
 			$("#loginbtn").attr("disabled", true);
-			$("#loginbtn").html(currentAccount).css('color', '#1E90FF');
+			$("#loginbtn").html(currentAccount.name).css('color', '#1E90FF');
 			
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
