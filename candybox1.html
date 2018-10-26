@@ -24,30 +24,11 @@
     <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
     <script src="https://static.medishares.net/js/vue.min.js"></script>
     <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
-	  <script src="js/tp.js"></script>
-        <script src="js/alertify.js"></script>
-        <script src="js/bootstrap.bundle.js"></script>
-        <script src="js/fontawesome-all.min.js"></script>
-        <script src="js/eos.min.js"></script>
-        <script src="js/mDialogMin.js"></script>
-        <script src="js/moment.min.js"></script>
-        <script src="https://cdn.bootcss.com/bignumber.js/7.2.1/bignumber.min.js"></script>
+	  
 
-
+	
     <script>
       // EOS RPC 网络设置
-
-		  $(function() {
-			var isTP = tp.isConnected();
-				tpAccount = null
-
-				if (isTP) {
-        			$('#loginbtn').hide();
-					tp.getCurrentWallet().then(function(data){	
-					tpAccount = data.data.name;
-					})
-					}
-		})
       var network = {
         blockchain:'eos',
         protocol:'https',
@@ -56,16 +37,10 @@
         chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
       };
       var currentAccount = null;
-		//
-
       // 连接
       function connect(){
         scatter.connect('MY_GAME_NAME').then(connected => {
-          if(connected){
-            alert('connect success');
-          }else{
-            alert('connect fail');
-          }
+
         });
       }
       // 登录，获取 EOS 账户
@@ -74,7 +49,10 @@
         // scatter.forgetIdentity();
         scatter.getIdentity({accounts:[network]}).then(result => {
           currentAccount =  result.accounts[0];
-          alert('account:'+JSON.stringify(currentAccount));
+          
+			
+			
+			document.getElementById("loginbtn").innerHtml="新按钮";
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
@@ -95,7 +73,6 @@
       }
 		
 		function gettea(){
-			alert(tpAccount);
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
@@ -119,7 +96,6 @@
 						});
 					});
       }
-		
 		
 		
 		
@@ -189,7 +165,7 @@
     <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
 <div class="qixi">
       
-      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <div class="col-md-12"><button id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录1</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
