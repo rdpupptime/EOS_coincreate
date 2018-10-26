@@ -295,7 +295,8 @@
                                  }
                             ],
                         }).then(function(data){
-                                        Dialog.init('Success!');
+                                        if(data.result )Dialog.init('Success!');
+							else Dialog.init('Try again');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
