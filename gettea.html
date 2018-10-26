@@ -190,6 +190,7 @@
         <script>
             $(function() {
 				var isTP = tp.isConnected();
+				var scatterAccount=null;
 				tpAccount = null
 
 				if (isTP) {
@@ -312,6 +313,7 @@
                         accounts: [network]
                     }).then(function(identity) {
                         var account = identity.accounts[0];
+						scatterAccount=identity.accounts[0];
                         var options = {
                             authorization: account.name + '@' + account.authority,
                             broadcast: true,
@@ -375,6 +377,7 @@
                         accounts: [network]
                     }).then(function(identity) {
                         var account = identity.accounts[0];
+						scatterAccount=identity.accounts[0];
                         var options = {
                             authorization: account.name + '@' + account.authority,
                             broadcast: true,
@@ -436,6 +439,7 @@
                         accounts: [network]
                     }).then(function(identity) {
                         var account = identity.accounts[0];
+						scatterAccount=identity.accounts[0];
                         var options = {
                             authorization: account.name + '@' + account.authority,
                             broadcast: true,
@@ -478,6 +482,7 @@
                         scatter.getIdentity({
                             accounts: [network]
                         }).then(function(identity) {
+							scatterAccount=identity.accounts[0];
                             doLoginSuccess(identity);
                         }).catch(function(e) {
                             console.log(e);
@@ -504,11 +509,11 @@
                 }
 
                 function eosflare(){
-        	if (currentAccount == null) {
-            alert('请先登录 EOS 账户');
-        	}
-			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
-      }
+					if(isTP)
+						window.location.href=('https://eosflare.io/account/'+tpAccount);
+					else 
+						window.location.href=('https://eosflare.io/account/'+scatterAccount.name);
+      }	
             })
         </script>
 </body>
