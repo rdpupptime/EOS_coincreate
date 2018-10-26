@@ -37,6 +37,7 @@
         chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
       };
       var currentAccount = null;
+		var isconnect = false;
       // 连接
       function connect(){
         scatter.connect('MY_GAME_NAME').then(connected => {
@@ -44,17 +45,29 @@
         });
       }
       // 登录，获取 EOS 账户
-      function login(){
-		  connect();
-        // scatter.forgetIdentity();
-        scatter.getIdentity({accounts:[network]}).then(result => {
-          currentAccount =  result.accounts[0];
+     function login(){
+		  if (isconnect ==false ){
+				  connect();
+				// scatter.forgetIdentity();
+				scatter.getIdentity({accounts:[network]}).then(result => {
+				  currentAccount =  result.accounts[0];
 
-			$("#loginbtn").attr("disabled", true);
-			$("#loginbtn").html(currentAccount.name).css('color', '#1E90FF');
-        }).catch(error => {
-          alert('error:'+JSON.stringify(error));
-        });
+					$("#loginbtn").html('退出'+currentAccount.name).css('color', '#1E90FF');
+					isconnect = true;
+
+				}).catch(error => {
+				  alert('error:'+JSON.stringify(error));
+				});
+		  }
+		  else
+			  {
+				 scatter.forgetIdentity().then(function () {
+					 	isconnect = false;
+					 currentAccount = null;
+					 	$("#loginbtn").html('登录').css('color', '#1E90FF');
+
+					}); 
+			  }
       }
 		
       // 转账
