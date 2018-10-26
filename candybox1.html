@@ -52,7 +52,8 @@
           
 			
 			
-			document.getElementById("loginbtn").innerHtml="新按钮";
+			$("#loginbtn").attr("disabled", true);
+		$("#loginbtn").html(account.name).css('color', '#1E90FF');
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
