@@ -50,7 +50,7 @@
         scatter.getIdentity({accounts:[network]}).then(result => {
           currentAccount =  result.accounts[0];
           
-			$('#loginbtn').hide();
+			$('#loginbtn').value=currentAccount;
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
