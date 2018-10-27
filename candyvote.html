@@ -78,7 +78,10 @@
 					isconnect = true;
 					
 					EosjsInit();
-					setInterval(ask, 1000);
+					setInterval(askprice, 1000);
+					setInterval(askvote, 1000);
+					setInterval(askacvote, 1000);
+					setInterval(askeos, 1000);
 
 				}).catch(error => {
 				  alert('error:'+JSON.stringify(error));
@@ -111,30 +114,6 @@
         });
       }
 		
-		function gettea(){
-        if (currentAccount == null) {
-            alert('请先登录 EOS 账户');
-        }
-        // alert(network.protocol+'://'+network.host);
-        var eos = scatter.eos(network, Eos);
-		var options = {
-                            authorization: currentAccount.name + '@' + currentAccount.authority,
-                            broadcast: true,
-                            sign: true
-                        };
-        eos.contract('linzongsheng', options).then(contract => {
-						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
-							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
-						});
-					});
-      }
 		
 		function eosflare(){
         	if (currentAccount == null) {
@@ -143,16 +122,66 @@
 			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
       		}
 		
-		function ask(){
+		function askvote(){
 					EosjsInit();
 					var contract = 'okkkkkkkkkkk';
 					var table = 'accounts';
-					var lower = 'EPRA';
+					var lower = 'VOTE';
+					var scope = 'eosvotetoken';
+					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+					if (error == null) {
+						//$("#inp3").html(JSON.stringify(data, null, 2));
+						document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+					} else {
+						//$("#inp3").html(error);
+						console.log(error);
+					}
+				})
+			}
+		function askprice(){
+					EosjsInit();
+					var contract = 'eosvotetoken';
+					var table = 'pricestat';
+					var lower = '6138892711541085488';
+					var scope = currentAccount.name;
+					g_eos.getTableRows(true, contract, contract, table, "",lower ,-1, 1, function (error, data) {
+					if (error == null) {
+						//$("#inp3").html(JSON.stringify(data, null, 2));
+						document.getElementById("inp1").value=(((data["rows"][0]["price"]).split(" ")[0])+'EOS/VOTE');
+					} else {
+						//$("#inp3").html(error);
+						console.log(error);
+					}
+				})
+			}
+		
+		function askacvote(){
+					EosjsInit();
+					var contract = 'okkkkkkkkkkk';
+					var table = 'accounts';
+					var lower = 'VOTE';
 					var scope = currentAccount.name;
 					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
 					if (error == null) {
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						document.getElementById("inp3").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+					} else {
+						//$("#inp3").html(error);
+						console.log(error);
+					}
+				})
+			}
+		
+		function askeos(){
+					EosjsInit();
+					var contract = 'eosio.token';
+					var table = 'accounts';
+					var lower = 'EOS';
+					var scope = currentAccount.name;
+					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+					if (error == null) {
+						//$("#inp3").html(JSON.stringify(data, null, 2));
+						document.getElementById("inp4").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
 						//$("#inp3").html(error);
 						console.log(error);
@@ -175,7 +204,7 @@
       <br><br><br>
 	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask123</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> 莫与BANCOR实验室       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
@@ -185,7 +214,7 @@
 			                              
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> VOTE当前价格（EOS/VOTE）          </font>  <br />   </label>
 													
 			                                        <input type="text" class="form-control" id="inp1" seg="1" >
 													
@@ -197,7 +226,7 @@
 			                                <br /><br />
 			                                <div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> VOTE票池当前剩余数量          </font>  <br />   </label>
 													
 			                                        <input type="text" class="form-control" id="inp2" seg="2" >
 													
@@ -210,7 +239,7 @@
 												<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 账户VOTE余额          </font>  <br />   </label>
 													
 			                                        <input type="text" class="form-control" id="inp3" seg="3" >
 													
@@ -223,7 +252,7 @@
 													<br /><br />
 											<div class="col-sm-5" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取399HC代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 账户EOS余额          </font>  <br />   </label>
 													
 			                                         <input type="text" class="form-control" id="inp4" seg="4" >
 													
@@ -236,7 +265,7 @@
 		
 	</div>
 	<div class="my-protocol right-align">
-		<a href="javascript:;" id="all" onclick="eosflare()">查询领取状态</a>
+		<a href="javascript:;" id="all" onclick="eosflare()">查询账户状态</a>
 	</div>
 	<div style="clear: both;"></div>
 	<ul class="qixi-about">
