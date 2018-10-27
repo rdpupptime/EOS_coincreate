@@ -28,7 +28,7 @@
 
 	
     <script>
-		
+		$(function() {
 		var g_curwalletname = '';
 		var g_curtable = '';
 		var g_curaction = '';
@@ -146,6 +146,7 @@
       		}
 		
 		function ask(){
+					EosjsInit();
 					var contract = 'okkkkkkkkkkk';
 					var table = 'accounts';
 					var lower = 'EPRA';
@@ -163,7 +164,7 @@
 		
 	
 		
-	
+	})
     </script>
 	  
   </head>
@@ -174,7 +175,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask</button></div>
+	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask1</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
