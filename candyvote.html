@@ -114,6 +114,43 @@
         });
       }
 		
+		function buyvote(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+        eos.transfer(currentAccount.name, 'eosvotetoken', $('#inp5').val() +' EOS', 'buy vote').then(result => {
+          alert('result:'+JSON.stringify(result));
+        }).catch(error => {
+          alert('error:'+JSON.stringify(error));
+        });
+      }
+		
+		function sellvote(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.transfer(currentAccount.name,'eosvotetoken', $('#inp6').val() +' VOTE', "sell vote", options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		
 		
 		function eosflare(){
         	if (currentAccount == null) {
@@ -202,8 +239,6 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask123</button></div>
-      <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与BANCOR实验室       </font>   </div>
 	
 	<br /><br />
@@ -212,7 +247,7 @@
 		  	<div class="row">
 		                          
 			                              
-			                                <div class="col-sm-5" align="center">
+			                                <div class="col-sm-5 col-lg-7" align="center">
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> VOTE当前价格（EOS/VOTE）          </font>  <br />   </label>
 													
@@ -237,7 +272,7 @@
 			                                </div>
 				
 												<br /><br />
-											<div class="col-sm-5" align="center">
+											<div class="col-sm-5 col-lg-7" align="center">
 												<div class="form-group">
 			                                        <label><font color="pink" size="3"> 账户VOTE余额          </font>  <br />   </label>
 													
@@ -261,6 +296,35 @@
 													</div>
 										
 			                                </div>
+											
+				
+					<br /><br />
+											<div class="col-sm-5 col-lg-7" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 买入VOTE数量          </font>  <br />   </label>
+													
+			                                        <input type="text" class="form-control" id="inp5" seg="5" >
+													<button type="button" id="buyvote" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="buyvote()">买入VOTE</button>
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
+													<br /><br />
+											<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 卖出VOTE数量          </font>  <br />   </label>
+													
+			                                         <input type="text" class="form-control" id="inp6" seg="6" >
+													
+			                                    	<button type="button" id="sellvote" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="sellvote()">卖出VOTE</button>
+												
+													</div>
+										
+			                                </div>
+				
+				
 		                            	</div>
 		
 	</div>
