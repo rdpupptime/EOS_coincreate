@@ -69,23 +69,22 @@
       function login(){
 		  if (isconnect ==false ){
 				  connect();
-			  var eosConfig = {
-					chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-					httpEndpoint: $("#httpendpointid").val(),
-					verbose: true
-				}
-
-				g_eos = Eos(eosConfig);
+			  
 				// scatter.forgetIdentity();
 				scatter.getIdentity({accounts:[network]}).then(result => {
 				  currentAccount =  result.accounts[0];
 
 					$("#loginbtn").html('退出'+currentAccount.name).css('color', '#1E90FF');
 					isconnect = true;
+					
+					EosjsInit();
+					setInterval(ask, 1000);
 
 				}).catch(error => {
 				  alert('error:'+JSON.stringify(error));
 				});
+			  
+			  
 		  }
 		  else
 			  {
@@ -174,7 +173,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask1</button></div>
+	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask123</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
