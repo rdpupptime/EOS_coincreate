@@ -107,6 +107,16 @@
 					
                 </div>
             </div>
+			
+			
+			<div class="col-sm-5">
+                <div class="form-group">
+                    <label> <font color="blue" size="3"> 领取399HC代币*         </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+
+					<button type="button" id="gethc" class='btn btn-finish btn-fill btn-primary btn-wd' >一键领取HC代币</button>
+					
+                </div>
+            </div>
         </center>
 
         <module-template data-is="state-play">
@@ -136,6 +146,7 @@
                         <h3>关于莫与糖果盒子</h3>
                         <div>精选的糖果等你来领！只需要 点击一下 海量EOS糖果随你领！</div>
 						<div>莫与糖果盒子所有糖果均由第三方项目提供</div>
+						<div>糖果盒子上币、升级合约、开发合约等商务合作请添加微信“SSAUTERNE”并备注“糖果盒子商务合作”</div>
                     </li>
 					<li>
                         <h3>关于TEA代币</h3>
@@ -155,6 +166,15 @@
                         <h3>关于LOVEYOU代币</h3>
                         <ul class="application">
                             <li>LOVEYOU是基于区块链 3.0 EOS主网发行的生态币， 致力于满足人们对爱情美好的向往，满足人们精神生活中各种场景表达爱的需要，致力于公益活动传递爱。在恋爱、生日、婚庆、纪念日、过年过节等喜庆的日子，使用LOVEYOU表达爱、享受各种高品质服务。并通过持有LOVEYOU享有其升值的权益。</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于HC代币</h3>
+                        <ul class="application">
+                            <li>Health Chain其代币HC对接中医养生、养发、美容、健身、娱乐、旅游、健康饮食等实体产品与服务，适时启动中医养生课堂讲座和社区商城，社区商城销售的金额将用于持币者分红，各超级合伙人将成为中医养生产品各级代理商，分享Health chain生态事业发展红利，适时启动线下实体店对接。</li>
+							<li>现诚邀超级合伙人若干：</li>
+							<li>微信社群群主(群员人数100人以上)有意建社群的朋友，联系微信：hongye05231</li>
+							
                         </ul>
                     </li>
                     <li>
@@ -295,7 +315,8 @@
                                  }
                             ],
                         }).then(function(data){
-                                        Dialog.init('Success!');
+                                        if(data.result) Dialog.init('Success!');
+									else Dialog.init('Try again!');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
@@ -316,12 +337,75 @@
                             broadcast: true,
                             sign: true
                         };
-                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+                       
 
                         eos.contract('okkkkkkkkkkk', options).then(contract => {
                 contract.signup(account.name, "0 LOVEYOU", account.name, options).then(function (tx) {
-                    if (tx.result) Dialog.init('Success! transactionId:'+tx.data.transactionId);
-					else Dialog.init('try again');
+                    Dialog.init('Success!');
+                    //getaccountinfo(account.name);
+                }).catch(function (e) {
+                    console.log(e);
+                    e = JSON.parse(e);
+                    if (e.error.details[0].message != "Invalid packed transaction") {
+                        Dialog.init(e.error.details[0].message);
+                    }
+                });
+            });
+
+                        
+                        doLoginSuccess(identity);
+                    })
+                    }
+                });
+				
+				
+				
+				 $("#gethc").click(function() {
+                    if (isTP) {
+                        tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'okkkkkkkkkkk',
+                                    name: 'signup',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        owner: tpAccount,
+                                        quantity: '0 HC',
+                                        ram_payer:tpAccount,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        if(data.result) Dialog.init('Success!');
+									else Dialog.init('Try again!');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+                    }
+                    else{
+
+                    if (!localStorage.getItem('account') && !scatter) {
+                        Dialog.init("Please install Scatter!");
+                        return;
+                    }
+
+                    scatter.getIdentity({
+                        accounts: [network]
+                    }).then(function(identity) {
+                        var account = identity.accounts[0];
+                        var options = {
+                            authorization: account.name + '@' + account.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+                      
+
+                        eos.contract('okkkkkkkkkkk', options).then(contract => {
+                contract.signup(account.name, "0 HC", account.name, options).then(function (tx) {
+                    Dialog.init('Success!');
                     //getaccountinfo(account.name);
                 }).catch(function (e) {
                     console.log(e);
@@ -357,7 +441,8 @@
                                  }
                             ],
                         }).then(function(data){
-                                        Dialog.init('Success!');
+                                        if(data.result) Dialog.init('Success!');
+									else Dialog.init('Try again!');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
@@ -378,7 +463,7 @@
                             broadcast: true,
                             sign: true
                         };
-                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+                        
 
                         eos.contract('linzongsheng', options).then(contract => {
                 contract.signup(account.name, "0.0000 TEA", account.name, options).then(function (tx) {
@@ -417,7 +502,8 @@
                                  }
                             ],
                         }).then(function(data){
-                                        Dialog.init('Success!');
+                                        if(data.result) Dialog.init('Success!');
+									else Dialog.init('Try again!');
                                     }).catch(function (err) {
                                         Dialog.init(JSON.stringify(err));
                                     });
@@ -438,7 +524,7 @@
                             broadcast: true,
                             sign: true
                         };
-                        var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+                    
 
                         eos.contract('eosenbpocket', options).then(contract => {
                 contract.signup(account.name, "0.0000 ENB", account.name, options).then(function (tx) {

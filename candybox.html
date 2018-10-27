@@ -137,6 +137,32 @@
       }
 		
 		
+	function gethc(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(function (tx) {
+							Dialog.init('Success!');
+							//getaccountinfo(account.name);
+						}).catch(function (e) {
+							console.log(e);
+							e = JSON.parse(e);
+							if (e.error.details[0].message != "Invalid packed transaction") {
+								Dialog.init(e.error.details[0].message);
+							}
+						});
+					});
+      }
+		
+		
 		
 		function getenb(){
         if (currentAccount == null) {
@@ -223,6 +249,19 @@
 													</div>
 										
 			                                </div>
+				
+													<br /><br />
+											<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取399HC代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="gethc" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gethc()">一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
 		                            	</div>
 		
 	</div>
@@ -235,6 +274,7 @@
                         <h3>关于莫与糖果盒子</h3>
                         <div>精选的糖果等你来领！只需要 点击一下 海量EOS糖果随你领！</div>
 						<div>莫与糖果盒子所有糖果均由第三方项目提供</div>
+						<div>糖果盒子上币、升级合约、开发合约等商务合作请添加微信“SSAUTERNE”并备注“糖果盒子商务合作”</div>
                     </li>
 					<li>
                         <h3>关于TEA代币</h3>
@@ -254,6 +294,15 @@
                         <h3>关于LOVEYOU代币</h3>
                         <ul class="application">
                             <li>LOVEYOU是基于区块链 3.0 EOS主网发行的生态币， 致力于满足人们对爱情美好的向往，满足人们精神生活中各种场景表达爱的需要，致力于公益活动传递爱。在恋爱、生日、婚庆、纪念日、过年过节等喜庆的日子，使用LOVEYOU表达爱、享受各种高品质服务。并通过持有LOVEYOU享有其升值的权益。</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于HC代币</h3>
+                        <ul class="application">
+                            <li>Health Chain其代币HC对接中医养生、养发、美容、健身、娱乐、旅游、健康饮食等实体产品与服务，适时启动中医养生课堂讲座和社区商城，社区商城销售的金额将用于持币者分红，各超级合伙人将成为中医养生产品各级代理商，分享Health chain生态事业发展红利，适时启动线下实体店对接。</li>
+							<li>现诚邀超级合伙人若干：</li>
+							<li>微信社群群主(群员人数100人以上)有意建社群的朋友，联系微信：hongye05231</li>
+							
                         </ul>
                     </li>
                     <li>
