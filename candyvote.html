@@ -28,6 +28,28 @@
 
 	
     <script>
+		
+		var g_curwalletname = '';
+		var g_curtable = '';
+		var g_curaction = '';
+		var g_eos = '';
+		var g_abidata = '';
+		var eosjs = '';
+		var eos = null;
+		
+		
+		function EosjsInit() {
+			
+			var eosConfig = {
+				chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+				httpEndpoint: 'https://mainnet.eoscannon.io',
+				verbose: true
+			}
+
+			g_eos = Eos(eosConfig);
+		}
+		
+		EosjsInit();
       // EOS RPC 网络设置
       var network = {
         blockchain:'eos',
@@ -48,6 +70,13 @@
       function login(){
 		  if (isconnect ==false ){
 				  connect();
+			  var eosConfig = {
+					chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+					httpEndpoint: $("#httpendpointid").val(),
+					verbose: true
+				}
+
+				g_eos = Eos(eosConfig);
 				// scatter.forgetIdentity();
 				scatter.getIdentity({accounts:[network]}).then(result => {
 				  currentAccount =  result.accounts[0];
@@ -109,24 +138,34 @@
 					});
       }
 		
+		function eosflare(){
+        	if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        	}
+			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
+      		}
 		
-		
-	
+		function ask(){
+					var contract = 'okkkkkkkkkkk';
+					var table = 'accounts';
+					var lower = 'EPRA';
+					var scope = currentAccount.name;
+					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+					if (error == null) {
+						//$("#inp3").html(JSON.stringify(data, null, 2));
+						document.getElementById("inp3").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+					} else {
+						//$("#inp3").html(error);
+						console.log(error);
+					}
+				})
+			}
 		
 	
 		
 	
     </script>
-	  <script>
-		$(function() {
-				function eosflare(){
-        	if (currentAccount == null) {
-            alert('请先登录 EOS 账户');
-        	}
-			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
-      }
-		})
-	</script>
+	  
   </head>
   <body>
 	  <div class="mds-group">
@@ -134,6 +173,8 @@
 <div class="qixi">
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <br><br><br>
+	<div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="ask()">ask</button></div>
       <br><br><br>
 	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
