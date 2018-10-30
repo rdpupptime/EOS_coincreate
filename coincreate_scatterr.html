@@ -82,7 +82,7 @@
 						if (cnt == 0){ $("#alr").hide(); alead=false;}
 						else {$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
-						document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
 						//$("#inp3").html(error);
 						console.log(error);
@@ -125,7 +125,10 @@
             alert('请先登录 EOS 账户');
         }
 		  ask();
-		  
+		  if( alead==true ){
+	  	  	alert('此代币已经被注册，换个符号试试？~');
+	  	  	return false;
+	  	  }
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
