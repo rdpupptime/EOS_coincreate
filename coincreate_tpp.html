@@ -56,7 +56,7 @@
 
 		                    	<div class="wizard-header">
 		                    	  <h3 class="wizard-title">创造您的EOS代币</h3>
-		                    	  <p class="category">Let's create our own EOS coin</p>
+		                    	  <p class="category">Let's create our own EOS token</p>
 		                    	</div>
 
 							  <div class="wizard-navigation">
@@ -300,6 +300,12 @@
 		
 	function transferb()
 {
+	
+	ask();
+		  if( alead==true ){
+	  	  	alert('此代币已经被注册，换个符号试试？~');
+	  	  	return false;
+	  	  }
 	
 	var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
 	tp.pushEosAction({
