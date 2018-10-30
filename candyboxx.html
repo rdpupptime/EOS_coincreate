@@ -100,7 +100,10 @@
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
-						  alert('error:'+JSON.stringify(error));
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -125,7 +128,8 @@
 						}).catch(error => {
 							var str=JSON.stringify(error);
 							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
-						  else alert('error:'+JSON.stringify(error));
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -147,7 +151,10 @@
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
-						  alert('error:'+JSON.stringify(error));
+						  var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -172,7 +179,8 @@
 						}).catch(error => {
 						 var str=JSON.stringify(error);
 							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
-						  else alert('error:'+JSON.stringify(error));
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
