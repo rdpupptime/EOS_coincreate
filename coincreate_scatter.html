@@ -120,8 +120,7 @@
             alert('请先登录 EOS 账户');
         }
 		  ask();
-		  if (alead==true) alert('代币已被注册，请重新选择');
-		  else{
+		  
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
@@ -131,7 +130,7 @@
           alert('error:'+JSON.stringify(error));
         });
 		  }
-      }
+      
 		
 		
 		
