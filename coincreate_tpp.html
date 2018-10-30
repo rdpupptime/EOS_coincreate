@@ -217,7 +217,7 @@
 		                        <div class="wizard-footer">
 		                        	<div class="pull-right">
 	                                  <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='下一步' />
-		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='3EOS 发币'  onclick="pushAction1()"  />
+		                                <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='3EOS 发币'  onclick="transferb()"  />
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
@@ -296,6 +296,39 @@
         });
       }
 		
+		
+		
+	function transferb()
+{
+	
+	var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+	tp.pushEosAction({
+                            actions: [
+                                {
+                                    account: 'eosio.token',
+                                    name: 'transfer',
+                                    authorization: [{
+                                        actor: tpAccount,
+                                        permission: 'active'
+                                    }],
+                                    data: {
+                                        from: tpAccount,
+										to: 'emmmmmmmmmmm',
+                                        quantity: '3.0000 EOS',
+                                        memo:memo,
+                                    }
+                                 }
+                            ],
+                        }).then(function(data){
+                                        if(data.result )Dialog.init('Success!');
+							else Dialog.init('Try again');
+                                    }).catch(function (err) {
+                                        Dialog.init(JSON.stringify(err));
+                                    });
+	
+}
+		
+		
 	function ask(){
 					
 					var contract = 'okkkkkkkkkkk';
@@ -317,6 +350,16 @@
 			}	
 		
 $(function () {
+	var isTP = tp.isConnected();
+				var scatterAccount=null;
+				tpAccount = null
+	
+	if (isTP) {
+					tp.getCurrentWallet().then(function(data){	
+					tpAccount = data.data.name;
+					})
+					}
+	
 	
 	EosjsInit();
 			$("#alr").hide();
