@@ -174,20 +174,7 @@
 														
 													
 														
-														tp.getTableRows({
-															json: true,
-															code: 'okkkkkkkkkkk',
-															scope: v,
-															table: 'stat',
-															lower_bound: v,
-															limit: 20
-														}).then(data =>{
-															var cnt = data["rows"].length;
-															if (cnt == 0){ $("#alr").hide(); alead=false;}
-															else {$("#alr").show();alead=true;}
-														}).catch(error => {
-														  alert('error:'+JSON.stringify(error));
-														});
+												
 														
 														
 														if(v.value == ''){
