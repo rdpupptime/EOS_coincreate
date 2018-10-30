@@ -71,7 +71,7 @@
       }
 		
 	function ask(){
-					EosjsInit();
+					
 					var contract = 'okkkkkkkkkkk';
 					var table = 'stat';
 					var lower = $('#inp3').val();
@@ -80,7 +80,7 @@
 					if (error == null) {
 						var cnt = data["rows"].length;
 						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {$("#alr").show();alead=true;}
+						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -125,14 +125,19 @@
             alert('请先登录 EOS 账户');
         }
 		  ask();
-		  
+		  if( alead==true ){
+	  	  	alert('此代币已经被注册，换个符号试试？~');
+	  	  	return false;
+	  	  }
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
         eos.transfer(currentAccount.name, 'emmmmmmmmmmm', '3.0000 EOS', memo).then(result => {
           alert('result:'+JSON.stringify(result));
         }).catch(error => {
-          alert('error:'+JSON.stringify(error));
+			var str=JSON.stringify(error);
+							if (str=="{}")alert('节点开小差了  我们再试试吧~');
+          else alert('error:'+JSON.stringify(error));
         });
 		  }
       
@@ -152,7 +157,7 @@
 		
 		
 		$(function () {
-			
+			EosjsInit();
 			$("#alr").hide();
 			
 			$('#inp3').on('keyup', function(){
