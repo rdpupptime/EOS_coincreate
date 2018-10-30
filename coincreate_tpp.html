@@ -27,9 +27,8 @@
     <script src="tp/include.js"></script>
     <script src="tp/jquery-2.2.4.min.js"></script>
 	  
-	<script src="js/scatter.min.js"></script>
+    <script src="js/scatter.min.js"></script>
     <script src="js/eos.min.js"></script>
-	
 	
 	
 	
@@ -173,12 +172,6 @@
 			                                        <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
 													<script>
 													function dothis(v){
-														
-													
-														
-														
-														
-														
 														if(v.value == ''){
 															return false;
 														}
@@ -274,7 +267,7 @@
 		var eosjs = '';
 		var eos = null;
 		var alead=false;
-	
+		
 		
 		function EosjsInit() {
 			
@@ -323,16 +316,15 @@
 				})
 			}	
 		
-		
-		
 $(function () {
+	
 	EosjsInit();
-	 //setInterval(askal, 100);
-$("#alr").hide();
-	$('#inp3').on('keyup', function(){
+			$("#alr").hide();
+			
+			$('#inp3').on('keyup', function(){
 			ask();
 			});
-		
+	
 function mapfunc(callback) {
 var val = $(this).val(),
 seg = parseInt($(this).attr('seg')),
