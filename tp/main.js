@@ -48,9 +48,6 @@ function transfer()
 	}
 }
 
-
-
-
 function accountChange()
 {
 	if(tp.isConnected() == true)
@@ -90,23 +87,13 @@ function pushAction()
 
 function pushAction1()
 {
-	//alert('try');
-
-
-	ask();
-		  if( alead==true ){
-	  	  	alert('此代币已经被注册，换个符号试试？~');
-	  	  	return false;
-	  	  }
-	
 	try {
-		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmk","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmm","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
         
 		var params = JSON.parse(str);
         tp.pushEosAction(params).then(data => {
           var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
           $('.consoleLog').html(result);
-
         })
       }
       catch(e) {
@@ -122,34 +109,15 @@ function getTable1()
 		var params = JSON.parse(str);
         tp.getTableRows(params).then(data => {
 		  var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
-          //$('.consoleLog').html(result);
+          $('.consoleLog').html(result);
         })
       }
       catch(e) {
-        //$('.consoleLog').html(e);
+        $('.consoleLog').html(e);
       }
 	
 }
 
-function getTable2()
-{
-	//alert('try');
-	try {
-        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + $('#inp3').val() + '","lower_bound: "'+$('#inp3').val()+'","table": "' + 'stat'+ '","limit": 30}';
-        alert(str);
-		var params = JSON.parse(str);
-        tp.getTableRows(params).then(data => {
-		  var cnt = data["rows"].length;
-						if (cnt == 0){ $("#alr").hide(); }
-						else {$("#alr").show();}
-          alert(JSON.stringify()data);
-        })
-      }
-      catch(e) {
-        //$('.consoleLog').html(e);
-      }
-	
-}
 
 
 function getRIDL()
