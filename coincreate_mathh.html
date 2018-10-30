@@ -219,7 +219,7 @@
 					if (error == null) {
 						var cnt = data["rows"].length;
 						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {$("#alr").show();alead=true;}
+						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
