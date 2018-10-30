@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+	  
+	<meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js" integrity="sha384-knhBOwpf8/28D6ygAjJeb0STNDZqfPbKaWQ8wIz/xgSc0xXwKsKhNype8fmfMka2" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- Scatter JS. -->
+    <script src="js/scatter.min.js"></script>
+    <script src="js/eos.min.js"></script>
+	  
+	  
+	  <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+	  
+
+	
+    <script>
+		var g_curwalletname = '';
+		var g_curtable = '';
+		var g_curaction = '';
+		var g_eos = '';
+		var g_abidata = '';
+		var eosjs = '';
+		var eos = null;
+		
+		
+		function EosjsInit() {
+			
+			var eosConfig = {
+				chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+				httpEndpoint: 'https://mainnet.eoscannon.io',
+				verbose: true
+			}
+
+			g_eos = Eos(eosConfig);
+		}
+      // EOS RPC 网络设置
+      var network = {
+        blockchain:'eos',
+        protocol:'https',
+        host:'mainnet.eoscannon.io',
+        port:443,
+        chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+      };
+      var currentAccount = null;
+		var isconnect = false;
+      // 连接
+      function connect(){
+        scatter.connect('MY_GAME_NAME').then(connected => {
+
+        });
+      }
+		
+	function ask(){
+					EosjsInit();
+					var contract = 'okkkkkkkkkkk';
+					var table = 'stat';
+					var lower = $('#inp3').val();
+					var scope = $('#inp3').val();
+					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+					if (error == null) {
+						var cnt = data["rows"].length;
+						if (cnt == 0) $("#alr").hide();
+						else $("#alr").show();
+						//$("#inp3").html(JSON.stringify(data, null, 2));
+						document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+					} else {
+						//$("#inp3").html(error);
+						console.log(error);
+					}
+				})
+			}	
+		
+		
+      // 登录，获取 EOS 账户
+     function login(){
+		 	$("#alr").hide();
+		  if (isconnect ==false ){
+				  connect();
+				// scatter.forgetIdentity();
+				scatter.getIdentity({accounts:[network]}).then(result => {
+				  currentAccount =  result.accounts[0];
+
+					$("#loginbtn").html('退出'+currentAccount.name).css('color', '#1E90FF');
+					isconnect = true;
+
+				}).catch(error => {
+				  alert('error:'+JSON.stringify(error));
+				});
+		  }
+		  else
+			  {
+				 scatter.forgetIdentity().then(function () {
+					 	isconnect = false;
+					 currentAccount = null;
+					 	$("#loginbtn").html('登录').css('color', '#1E90FF');
+
+					}); 
+			  }
+      }
+		
+      // 转账
+      function transfer(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
+        var eos = scatter.eos(network, Eos);
+        eos.transfer(currentAccount.name, 'emmmmmmmmmmm', '3.0000 EOS', memo).then(result => {
+          alert('result:'+JSON.stringify(result));
+        }).catch(error => {
+          alert('error:'+JSON.stringify(error));
+        });
+      }
+		
+		
+		
+		
+		
+		function eosflare(){
+        	if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        	}
+			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
+      }
+    </script>
+  </head>
+  <body>
+	  <div class="mds-group">
+    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+<div class="qixi">
+      
+      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <br><br><br>
+	<div align="center"> <font color="pink"  size="5"> 莫与一键发币       </font>   </div>
+	
+	<br /><br />
+	<div align="center">    </div>
+	<div class="card">
+		  	<div class="row">
+		                          
+			                              
+			    <div class="col-sm-5 col-lg-6">
+                <div class="form-group">
+                    <label> <font color="pink" size="3"> 请输入接收币账户名<br />（12位EOS账户名）</font> </label>
+                    <input type="text" class="form-control" id="inp1" seg="1" placeholder="例： developstdio">
+                    <script>
+                        function accountname(v) {
+                            if (v.value == '') {
+                                return false;
+                            }
+                            //大写转小写
+                            v.value = v.value.toLowerCase();
+                            //判断是否为英文
+
+                            //判断是否超过长度
+                            if (v.value.length > 12) {
+                                return v.value = v.value.substr(0, 12);
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+			                                <br /><br />
+			                                <div class="col-sm-5 col-sm-offset-1">
+                <div class="form-group">
+                    <label><font color="pink" size="3">请输入发币数量<br />（小数点后为精确度）</font></label>
+                    <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" onKeyUp="number(this);">
+
+                    <script>
+                        function number(v) {
+                            if (v.value == '') {
+                                return false;
+                            }
+                            //大写转小写
+
+                            //判断是否为英文
+
+                            //判断是否超过长度
+                            if (v.value.length > 17) {
+                                return v.value = v.value.substr(0, 17);
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+				
+												<br /><br />
+											 <div class="col-sm-5 col-lg-6">
+                <div class="form-group">
+                    <label color=#ffffff><font color="pink" size="3">请输入代币符号<br />（1-7位的大写字母）</font></label>
+                    <input type="text" class="form-control" id="inp3" seg="3" placeholder="例： MOYU" onKeyUp="dothis(this);">
+                    <script>
+                        function dothis(v) {
+                            if (v.value == '') {
+                                return false;
+                            }
+                            //小写转大写
+                            v.value = v.value.toUpperCase();
+                            //判断是否为英文
+                            if (!/^([A-Za-z]+\s?)*[A-Za-z]$/.test(v.value)) {
+                                return v.value = v.value.substr(0, v.value.length - 1);
+                            }
+                            //判断是否超过长度
+                            if (v.value.length > 7) {
+                                return v.value = v.value.substr(0, 7);
+                            }
+                        }
+                    </script>
+					<font color="red"  size="3" id="alr" > 已被注册 </font> 
+                </div>
+            </div>
+				
+			<div class="col-sm-5 col-sm-offset-1">
+                <div class="form-group">
+                    <label><font color="pink" size="3">一键发币</font></label> <br />
+                    <button type="button" id="transfer" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()">一键发币</button>
+                </div>
+            </div>
+				
+		                            	</div>
+		
+	</div>
+	<div class="my-protocol right-align">
+		<a href="javascript:;" id="all" onclick="eosflare()">查询领取状态</a>
+	</div>
+	<div style="clear: both;"></div>
+	   <ul class="qixi-about">
+                    <li>
+                        <h3>关于莫与一键发币</h3>
+                        <div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
+                    </li>
+                    <li>
+                        <h3>检测代币符号是否已经被注册流程</h3>
+                        <ul class="application">
+                            <li>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</li>
+                            （例：MOYU）
+                            <li>2.若无回复，则可以注册</li>
+                            <li>3.若回复“已被注册”，则不可再注册</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>对于发币数量精度说明</h3>
+                        <ul class="application">
+                            <li>发币数量的精度需要按需填写！</li>
+                            <li>例如：</li>
+                            若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。
+                            <li>再例如</li>
+                            发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>注意事项</h3>
+                        <ul class="application">
+                            <li>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</li>
+                            <li>2.用户确认之前所填信息无误即可点击发币按钮进行发币！</li>
+                            <li>3.利用莫与一键发币所发币种名字唯一，不可重复</li>
+                            <li>4.转账成功后币即可到账，可通过eosflare.io进行查询</li>
+                            <li>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</li>
+                            <li>6.由于用户填写错误造成的损失本DApp概不负责</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>关于作者</h3>
+                        <div>关于“莫与一键发币”。任何问题可以通过公众号“深入浅出EOS”联系原作者莫与。</div>
+                    </li>
+                </ul>
+</div>
+</div>
+  
+  </body>
+</html>
