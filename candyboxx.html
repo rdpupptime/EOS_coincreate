@@ -97,7 +97,7 @@
                         };
         eos.contract('linzongsheng', options).then(contract => {
 						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(result => {
-          alert('result:'+JSON.stringify(result));
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
 						  alert('error:'+JSON.stringify(error));
@@ -119,15 +119,11 @@
                             sign: true
                         };
         eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						  alert('error:'+JSON.stringify(error));
 						});
 					});
       }
@@ -145,15 +141,11 @@
                             sign: true
                         };
         eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						  alert('error:'+JSON.stringify(error));
 						});
 					});
       }
@@ -172,15 +164,11 @@
                             sign: true
                         };
         eos.contract('eosenbpocket', options).then(contract => {
-						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						  alert('error:'+JSON.stringify(error));
 						});
 					});
       }
