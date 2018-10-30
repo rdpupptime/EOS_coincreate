@@ -123,7 +123,9 @@
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
-						  alert('error:'+JSON.stringify(error));
+							var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+						  else alert('error:'+JSON.stringify(error));
 						});
 					});
       }
@@ -168,7 +170,9 @@
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
-						  alert('error:'+JSON.stringify(error));
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+						  else alert('error:'+JSON.stringify(error));
 						});
 					});
       }
@@ -189,7 +193,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> ~莫与糖果盒子~       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
