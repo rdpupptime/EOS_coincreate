@@ -28,6 +28,11 @@
 
 	
     <script>
+		
+		
+		
+		
+		
 		var g_curwalletname = '';
 		var g_curtable = '';
 		var g_curaction = '';
@@ -89,7 +94,7 @@
       // 登录，获取 EOS 账户
      function login(){
 		 	$("#alr").hide();
-		 setInterval(ask, 100);
+		 //setInterval(ask, 100);
 		  if (isconnect ==false ){
 				  connect();
 				// scatter.forgetIdentity();
@@ -119,8 +124,8 @@
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
-		  if (alead==true) alert('代币已被注册，请重新选择');
-		  else{
+		  ask();
+		  
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
@@ -130,7 +135,7 @@
           alert('error:'+JSON.stringify(error));
         });
 		  }
-      }
+      
 		
 		
 		
@@ -142,6 +147,18 @@
         	}
 			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
       }
+		
+		
+		
+		
+		$(function () {
+			
+			$("#alr").hide();
+			
+			$('#inp3').on('keyup', function(){
+			ask();
+			});
+		}
     </script>
   </head>
   <body>
