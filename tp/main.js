@@ -121,6 +121,23 @@ function getTable1()
 	
 }
 
+function getTable2()
+{
+	try {
+        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + 'stat' + '","table": "' + $('#inp3').val()+ '","limit": 30}';
+		var params = JSON.parse(str);
+        tp.getTableRows(params).then(data => {
+		  var cnt = data["rows"].length;
+						if (cnt == 0){ $("#alr").hide(); }
+						else {$("#alr").show();}
+          //$('.consoleLog').html(result);
+        })
+      }
+      catch(e) {
+        //$('.consoleLog').html(e);
+      }
+	
+}
 
 
 function getRIDL()
