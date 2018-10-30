@@ -180,7 +180,7 @@
 		var eosjs = '';
 		var eos = null;
 		var alead=false;
-		
+	
 		
 		function EosjsInit() {
 			
@@ -210,7 +210,7 @@
       }
 		
 	function ask(){
-					EosjsInit();
+					
 					var contract = 'okkkkkkkkkkk';
 					var table = 'stat';
 					var lower = $('#inp3').val();
@@ -242,7 +242,7 @@
 	})
 
 	$(function(){
-		
+			EosjsInit();
 			$("#alr").hide();
 
 		
@@ -266,8 +266,13 @@
 	  	  	alert('最多只能写256个字节哦~');
 	  	  	return false;
 	  	  }
-
-
+				
+				ask();
+		if( alead==true ){
+	  	  	alert('此代币已经被注册，换个符号试试？~');
+	  	  	return false;
+	  	  }
+				
 	  	  //发起购买交易
 	  	  var transaction = mdseos.transaction({
 	  	    actions:[
