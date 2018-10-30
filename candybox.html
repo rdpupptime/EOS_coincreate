@@ -96,15 +96,14 @@
                             sign: true
                         };
         eos.contract('linzongsheng', options).then(contract => {
-						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -123,15 +122,14 @@
                             sign: true
                         };
         eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+							var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -149,15 +147,14 @@
                             sign: true
                         };
         eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						  var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -176,15 +173,14 @@
                             sign: true
                         };
         eos.contract('eosenbpocket', options).then(contract => {
-						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(function (tx) {
-							Dialog.init('Success!');
+						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
-						}).catch(function (e) {
-							console.log(e);
-							e = JSON.parse(e);
-							if (e.error.details[0].message != "Invalid packed transaction") {
-								Dialog.init(e.error.details[0].message);
-							}
+						}).catch(error => {
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -205,7 +201,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> ~莫与糖果盒子~       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
@@ -274,6 +270,7 @@
                         <h3>关于莫与糖果盒子</h3>
                         <div>精选的糖果等你来领！只需要 点击一下 海量EOS糖果随你领！</div>
 						<div>莫与糖果盒子所有糖果均由第三方项目提供</div>
+						<div>PC端用户可以登录https://coincreate.github.io/EOS_coincreate/candybox.html通过scatter获取糖果</div>
 						<div>糖果盒子上币、升级合约、开发合约等商务合作请添加微信“SSAUTERNE”并备注“糖果盒子商务合作”</div>
                     </li>
 					<li>
@@ -306,7 +303,7 @@
                         </ul>
                     </li>
                     <li>
-                        <h3>代币领取注意事项</h3>
+                        <h3>※代币领取注意事项※</h3>
                         <ul class="application">
                             <li>1.后面带有“*”标志的项目，领取空投这个过程会占用账户RAM用以领取代币</li>
 							<li>2.后面带有“*”标志的项目，领取空投会占用大概0.24KiB RAM资源</li>
