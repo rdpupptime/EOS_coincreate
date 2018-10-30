@@ -102,8 +102,7 @@
 						}).catch(error => {
 						 var str=JSON.stringify(error);
 							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
-							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
-						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+						  else else alert('error:'+JSON.stringify(error));
 						});
 					});
       }

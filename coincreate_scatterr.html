@@ -136,8 +136,7 @@
           alert('result:'+JSON.stringify(result));
         }).catch(error => {
 			var str=JSON.stringify(error);
-							if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
-						  else if (str.indexOf(""))alert('节点开小差了  我们再试试吧~');
+							if (str.indexOf(""))alert('节点开小差了  我们再试试吧~');
           else alert('error:'+JSON.stringify(error));
         });
 		  }
