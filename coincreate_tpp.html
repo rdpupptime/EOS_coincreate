@@ -26,9 +26,10 @@
     <script src="tp/tp.js"></script>
     <script src="tp/include.js"></script>
     <script src="tp/jquery-2.2.4.min.js"></script>
-<script src="js/scatter.min.js"></script>
+	  
+	<script src="js/scatter.min.js"></script>
     <script src="js/eos.min.js"></script>
-
+	
 	
 	
 	
@@ -264,6 +265,7 @@
 	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 	<script src="assets/js/jquery.validate.min.js" type="text/javascript"></script>
 	<script type="text/javascript"> 
+		
 		var g_curwalletname = '';
 		var g_curtable = '';
 		var g_curaction = '';
@@ -272,7 +274,7 @@
 		var eosjs = '';
 		var eos = null;
 		var alead=false;
-		
+	
 		
 		function EosjsInit() {
 			
@@ -284,9 +286,25 @@
 
 			g_eos = Eos(eosConfig);
 		}
+      // EOS RPC 网络设置
+      var network = {
+        blockchain:'eos',
+        protocol:'https',
+        host:'mainnet.eoscannon.io',
+        port:443,
+        chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+      };
+      var currentAccount = null;
+		var isconnect = false;
+      // 连接
+      function connect(){
+        scatter.connect('MY_GAME_NAME').then(connected => {
+
+        });
+      }
 		
-		function ask(){
-					EosjsInit();
+	function ask(){
+					
 					var contract = 'okkkkkkkkkkk';
 					var table = 'stat';
 					var lower = $('#inp3').val();
@@ -295,7 +313,7 @@
 					if (error == null) {
 						var cnt = data["rows"].length;
 						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {$("#alr").show();alead=true;}
+						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -305,9 +323,16 @@
 				})
 			}	
 		
+		
+		
 $(function () {
-	
-	$("#alr").hide();
+	EosjsInit();
+	 //setInterval(askal, 100);
+$("#alr").hide();
+	$('#inp3').on('keyup', function(){
+			ask();
+			});
+		
 function mapfunc(callback) {
 var val = $(this).val(),
 seg = parseInt($(this).attr('seg')),
@@ -338,14 +363,12 @@ mapfunc.call(this);
 });
 $('#inp3').on('keyup', function(){
 mapfunc.call(this);
+
+	
+	
+
+	
 });
-	
-	
-$('#inp3').on('keyup', function(){
-			ask();
-			});
-	
-	
 });
 </script>
 
