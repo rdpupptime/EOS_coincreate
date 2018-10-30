@@ -124,7 +124,7 @@ function getTable1()
 function getTable2()
 {
 	try {
-        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + 'stat' + '","table": "' + $('#inp3').val()+ '","limit": 30}';
+        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + $('#inp3').val() + '","table": "' + 'stat'+ '","limit": 30}';
 		var params = JSON.parse(str);
         tp.getTableRows(params).then(data => {
 		  var cnt = data["rows"].length;
