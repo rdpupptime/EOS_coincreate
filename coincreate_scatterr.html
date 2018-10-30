@@ -35,6 +35,7 @@
 		var g_abidata = '';
 		var eosjs = '';
 		var eos = null;
+		var alead=false;
 		
 		
 		function EosjsInit() {
@@ -73,8 +74,8 @@
 					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
 					if (error == null) {
 						var cnt = data["rows"].length;
-						if (cnt == 0) $("#alr").hide();
-						else $("#alr").show();
+						if (cnt == 0){ $("#alr").hide(); alead=false;}
+						else {$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -118,6 +119,8 @@
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
+		  if (alead=true) alert('代币已被注册，请重新选择');
+		  else{
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
@@ -126,6 +129,7 @@
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
+		  }
       }
 		
 		
@@ -147,7 +151,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> 莫与一键发币       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> ~莫与一键发币~       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
