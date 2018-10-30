@@ -92,7 +92,7 @@ function pushAction1()
 {
 	//alert('try');
 	try {
-		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmm","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
+		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmk","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
         
 		var params = JSON.parse(str);
         tp.pushEosAction(params).then(data => {
@@ -125,9 +125,10 @@ function getTable1()
 
 function getTable2()
 {
-	alert('try');
+	//alert('try');
 	try {
-        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + $('#inp3').val() + '","table": "' + 'stat'+ '","limit": 30}';
+        var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + $('#inp3').val() + '","lower_bound: "'+$('#inp3').val()+'","table": "' + 'stat'+ '","limit": 30}';
+        alert(str);
 		var params = JSON.parse(str);
         tp.getTableRows(params).then(data => {
 		  var cnt = data["rows"].length;
