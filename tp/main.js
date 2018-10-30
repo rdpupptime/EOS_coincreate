@@ -90,6 +90,7 @@ function pushAction()
 
 function pushAction1()
 {
+	//alert('try');
 	try {
 		var str = '{"actions": [{"account": "eosio.token","name": "transfer","authorization": [{"actor": "'+ $('#inp1').val() + '","permission": "active"}],"data": {"from": "'+ $('#inp1').val() + '","to": "emmmmmmmmmmm","quantity": "3.0000 EOS","memo": "' + '1-'+ $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val() + '"}}]}';
         
@@ -97,6 +98,7 @@ function pushAction1()
         tp.pushEosAction(params).then(data => {
           var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
           $('.consoleLog').html(result);
+
         })
       }
       catch(e) {
@@ -112,17 +114,18 @@ function getTable1()
 		var params = JSON.parse(str);
         tp.getTableRows(params).then(data => {
 		  var result = JSON.stringify(JSON.parse(JSON.stringify(data)), null, 2);
-          $('.consoleLog').html(result);
+          //$('.consoleLog').html(result);
         })
       }
       catch(e) {
-        $('.consoleLog').html(e);
+        //$('.consoleLog').html(e);
       }
 	
 }
 
 function getTable2()
 {
+	alert('try');
 	try {
         var str = '{"json": true, "code": "'+ 'okkkkkkkkkkk' + '", "scope": "' + $('#inp3').val() + '","table": "' + 'stat'+ '","limit": 30}';
 		var params = JSON.parse(str);
@@ -130,7 +133,7 @@ function getTable2()
 		  var cnt = data["rows"].length;
 						if (cnt == 0){ $("#alr").hide(); }
 						else {$("#alr").show();}
-          //$('.consoleLog').html(result);
+          alert(JSON.stringify()data);
         })
       }
       catch(e) {
