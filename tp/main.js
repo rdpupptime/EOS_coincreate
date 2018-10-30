@@ -48,6 +48,29 @@ function transfer()
 	}
 }
 
+
+function askal()
+{
+	if(tp.isConnected() == true)
+	{
+		tp.getTableRows({
+															json: true,
+															code: 'okkkkkkkkkkk',
+															scope: $('#inp3').val(),
+															table: 'stat',
+															lower_bound: $('#inp3').val(),
+															limit: 20
+														}).then(data =>{
+															var cnt = data["rows"].length;
+															if (cnt == 0){ $("#alr").hide(); alead=false;}
+															else {$("#alr").show();alead=true;}
+														}).catch(error => {
+														  alert('error:'+JSON.stringify(error));
+														});
+	}
+}
+
+
 function accountChange()
 {
 	if(tp.isConnected() == true)
