@@ -28,26 +28,7 @@
 
 	
     <script>
-		var g_curwalletname = '';
-		var g_curtable = '';
-		var g_curaction = '';
-		var g_eos = '';
-		var g_abidata = '';
-		var eosjs = '';
-		var eos = null;
-		var alead=false;
 		
-		
-		function EosjsInit() {
-			
-			var eosConfig = {
-				chainId: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-				httpEndpoint: 'https://mainnet.eoscannon.io',
-				verbose: true
-			}
-
-			g_eos = Eos(eosConfig);
-		}
       // EOS RPC 网络设置
       var network = {
         blockchain:'eos',
@@ -64,32 +45,9 @@
 
         });
       }
-		
-	function ask(){
-					EosjsInit();
-					var contract = 'okkkkkkkkkkk';
-					var table = 'stat';
-					var lower = $('#inp3').val();
-					var scope = $('#inp3').val();
-					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
-					if (error == null) {
-						var cnt = data["rows"].length;
-						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {$("#alr").show();alead=true;}
-						//$("#inp3").html(JSON.stringify(data, null, 2));
-						document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
-					} else {
-						//$("#inp3").html(error);
-						console.log(error);
-					}
-				})
-			}	
-		
-		
       // 登录，获取 EOS 账户
      function login(){
-		 	$("#alr").hide();
-		 setInterval(ask, 100);
+		 
 		  if (isconnect ==false ){
 				  connect();
 				// scatter.forgetIdentity();
@@ -119,8 +77,6 @@
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
-		  ask();
-		  
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
@@ -129,8 +85,7 @@
         }).catch(error => {
           alert('error:'+JSON.stringify(error));
         });
-		  }
-      
+      }
 		
 		
 		
@@ -151,7 +106,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> ~莫与一键发币~       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> 莫与一键发币       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
@@ -185,7 +140,6 @@
                 <div class="form-group">
                     <label><font color="pink" size="3">请输入发币数量<br />（小数点后为精确度）</font></label>
                     <input type="text" class="form-control" id="inp2" seg="2" placeholder="例： 1000000000.0000" onKeyUp="number(this);">
-
                     <script>
                         function number(v) {
                             if (v.value == '') {
@@ -226,7 +180,6 @@
                             }
                         }
                     </script>
-					<font color="red"  size="3" id="alr" > 已被注册 </font> 
                 </div>
             </div>
 				
