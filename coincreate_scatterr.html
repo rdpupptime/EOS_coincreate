@@ -89,6 +89,26 @@
 					}
 				})
 			}	
+
+
+            function num(){
+                    
+                    var contract = 'okkkkkkkkkkk';
+                    var table = 'balance';
+                    var lower = '0';
+                    var scope = 'okkkkkkkkkkk';
+                    g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+                    if (error == null) {
+                        var cnt = data["rows"].length;
+                       alert(cnt);
+                        //$("#inp3").html(JSON.stringify(data, null, 2));
+                        //document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
+                    } else {
+                        //$("#inp3").html(error);
+                        console.log(error);
+                    }
+                })
+            }   
 		
 		
       // 登录，获取 EOS 账户
@@ -133,7 +153,9 @@
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
         eos.transfer(currentAccount.name, 'emmmmmmmmmmm', '3.0000 EOS', memo).then(result => {
-          alert('result:'+JSON.stringify(result));
+          //alert('result:'+JSON.stringify(result));
+          alert('发币成功！需要在钱包中显示代币的用户请根据页面下方提示在钱包中自助添加代币');
+
         }).catch(error => {
 			var str=JSON.stringify(error);
 							if (str=="{}")alert('节点开小差了  我们再试试吧~');
@@ -258,6 +280,13 @@
                     <button type="button" id="transfer" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="transfer()">一键发币</button>
                 </div>
             </div>
+
+            <div class="col-sm-5 col-sm-offset-1">
+                <div class="form-group">
+                    <label><font color="pink" size="3">一键查询</font></label> <br />
+                    <button type="button" id="transfer" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="num()">一键查询</button>
+                </div>
+            </div>
 				
 		                            	</div>
 		
@@ -272,12 +301,12 @@
                         <div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
                     </li>
                     <li>
-                        <h3>检测代币符号是否已经被注册流程</h3>
+                        <h3>在钱包中显示代币流程</h3>
                         <ul class="application">
-                            <li>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</li>
-                            （例：MOYU）
-                            <li>2.若无回复，则可以注册</li>
-                            <li>3.若回复“已被注册”，则不可再注册</li>
+                            <li>1.关注“深入浅出EOS”公众号</li>
+                            
+                            <li>2.后台回复“钱包显示”</li>
+                            <li>3.根据提示操作</li>
                         </ul>
                     </li>
                     <li>
