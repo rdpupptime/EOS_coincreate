@@ -102,7 +102,8 @@
 						}).catch(error => {
 						 var str=JSON.stringify(error);
 							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
-						  else else alert('error:'+JSON.stringify(error));
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
 						});
 					});
       }
@@ -302,7 +303,7 @@
                         </ul>
                     </li>
                     <li>
-                        <h3>※代币领取注意事项※</h3>
+                        <h3>代币领取注意事项</h3>
                         <ul class="application">
                             <li>1.后面带有“*”标志的项目，领取空投这个过程会占用账户RAM用以领取代币</li>
 							<li>2.后面带有“*”标志的项目，领取空投会占用大概0.24KiB RAM资源</li>
