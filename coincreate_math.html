@@ -114,15 +114,15 @@
 			<h3>关于莫与一键发币</h3>
 			<div>只需要 30秒 3EOS，你就能发行一款属于自己的EOS发币。</div>
 		</li>
-		<li>
-			<h3>检测代币符号是否已经被注册流程</h3>
-			<ul class="application">
-				<li>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</li>
-				（例：MOYU）
-				<li>2.若无回复，则可以注册</li>
-				<li>3.若回复“已被注册”，则不可再注册</li>
-			</ul>
-		</li>
+		 <li>
+                        <h3>在钱包中显示代币流程</h3>
+                        <ul class="application">
+                            <li>1.关注“深入浅出EOS”公众号</li>
+                            
+                            <li>2.后台回复“钱包显示”</li>
+                            <li>3.根据提示操作</li>
+                        </ul>
+                    </li>
 		<li>
 			<h3>对于发币数量精度说明</h3>
 			<ul class="application">
@@ -218,8 +218,8 @@
 					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
 					if (error == null) {
 						var cnt = data["rows"].length;
-						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
+						if (cnt == 0){document.getElementById('alr').style.color = "green";document.getElementById('alr').innerText=$('#inp3').val()+"可以注册";$("#alr").show();alead=false;}
+						else {document.getElementById('alr').style.color = "red";document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -228,6 +228,7 @@
 					}
 				})
 			}	
+		
 		
 		
 
