@@ -97,7 +97,7 @@
                     var table = 'accounts';
                     var lower = '0';
                     var scope = 'okkkkkkkkkkk';
-                    g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
+                    g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1000000, function (error, data) {
                     if (error == null) {
                         var cnt = data["rows"].length;
                        alert(cnt);
@@ -283,7 +283,7 @@
 
             <div class="col-sm-5 col-sm-offset-1">
                 <div class="form-group">
-                    <label><font color="pink" size="3">一键查询1</font></label> <br />
+                    <label><font color="pink" size="3">一键查询2</font></label> <br />
                     <button type="button" id="transfer" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="num()">一键查询</button>
                 </div>
             </div>
