@@ -344,8 +344,8 @@
 					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
 					if (error == null) {
 						var cnt = data["rows"].length;
-						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
+						if (cnt == 0){document.getElementById('alr').style.color = "green";document.getElementById('alr').innerText=$('#inp3').val()+"可以注册";$("#alr").show();alead=false;}
+						else {document.getElementById('alr').style.color = "red";document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -354,6 +354,7 @@
 					}
 				})
 			}	
+		
 		
 $(function () {
 	var isTP = tp.isConnected();
