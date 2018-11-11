@@ -32,7 +32,7 @@
       var network = {
         blockchain:'eos',
         protocol:'https',
-        host:'mainnet.eoscannon.io',
+        host:'mainnet.eoscanada.com ',
         port:443,
         chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
       };
@@ -122,7 +122,7 @@
                             sign: true
                         };
         eos.contract('answerandeos', options).then(contract => {
-						contract.signup(currentAccount.name, "0 FAQ", currentAccount.name, options).then(result => {
+						contract.signup(currentAccount.name, "0.0000 FAQ", currentAccount.name, options).then(result => {
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
@@ -221,7 +221,7 @@
       
       <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
       <br><br><br>
-	<div align="center"> <font color="pink"  size="5"> ~莫与糖果盒子~       </font>   </div>
+	<div align="center"> <font color="pink"  size="5"> 莫与糖果盒子       </font>   </div>
 	
 	<br /><br />
 	<div align="center">    </div>
