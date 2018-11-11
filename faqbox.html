@@ -161,7 +161,7 @@
 		
 		
 		
-		function getenb(){
+		function openfaq(){
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
@@ -172,15 +172,35 @@
                             broadcast: true,
                             sign: true
                         };
-        eos.contract('eosenbpocket', options).then(contract => {
-						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(result => {
-          alert('领取成功，右下角“查询领取状态”可查询领取情况');
+        eos.contract('answerandeos', options).then(contract => {
+						contract.setstats(1, options).then(result => {
+          alert('成功');
 							//getaccountinfo(account.name);
 						}).catch(error => {
 						 var str=JSON.stringify(error);
-							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
-							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
-						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+							 alert('失败~');
+						});
+					});
+      }
+		
+		function closefaq(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('answerandeos', options).then(contract => {
+						contract.setstats(0, options).then(result => {
+          alert('成功');
+							//getaccountinfo(account.name);
+						}).catch(error => {
+						 var str=JSON.stringify(error);
+							 alert('失败~');
 						});
 					});
       }
@@ -214,6 +234,30 @@
 			                                        <label><font color="pink" size="3"> 领取111.1111FAQ代币*          </font>  <br />   </label>
 													
 			                                        <button type="button" id="getfaq" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getfaq()">一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+			                                <br /><br />
+				<div class="col-sm-5 col-lg-12" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 关闭EOS/FAQ兑换          </font>  <br />   </label>
+													
+			                                        <button type="button" id="closefaq" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="closefaq()">关闭EOS/FAQ兑换</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+			                                <br /><br />
+				<div class="col-sm-5 col-lg-12" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 开启EOS/FAQ兑换          </font>  <br />   </label>
+													
+			                                        <button type="button" id="openfaq" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="openfaq()">开启EOS/FAQ兑换</button>
 													
 			                                    
 												
