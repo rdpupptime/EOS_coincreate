@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+	  
+	<meta id="i18n_pagename" content="message">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.9.3/umd/popper.min.js" integrity="sha384-knhBOwpf8/28D6ygAjJeb0STNDZqfPbKaWQ8wIz/xgSc0xXwKsKhNype8fmfMka2" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- Scatter JS. -->
+    <script src="js/scatter.min.js"></script>
+    <script src="js/eos.min.js"></script>
+	  
+	  
+	  <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://static.medishares.net/css/common.css?v=2018082901">
+    <script src="https://static.medishares.net/js/jquery-3.2.1.min.js"></script>
+    <script src="https://static.medishares.net/js/vue.min.js"></script>
+    <script src="https://static.medishares.net/js/common.js?v=2018082901"></script>
+	  
+
+	
+    <script>
+      // EOS RPC 网络设置
+      var network = {
+        blockchain:'eos',
+        protocol:'https',
+        host:'mainnet.eoscannon.io',
+        port:443,
+        chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+      };
+      var currentAccount = null;
+		var isconnect = false;
+      // 连接
+      function connect(){
+        scatter.connect('MY_GAME_NAME').then(connected => {
+
+        });
+      }
+      // 登录，获取 EOS 账户
+      function login(){
+		  if (isconnect ==false ){
+				  connect();
+				// scatter.forgetIdentity();
+				scatter.getIdentity({accounts:[network]}).then(result => {
+				  currentAccount =  result.accounts[0];
+
+					$("#loginbtn").html('退出'+currentAccount.name).css('color', '#1E90FF');
+					isconnect = true;
+
+				}).catch(error => {
+				  alert('error:'+JSON.stringify(error));
+				});
+		  }
+		  else
+			  {
+				 scatter.forgetIdentity().then(function () {
+					 	isconnect = false;
+					 currentAccount = null;
+					 	$("#loginbtn").html('登录').css('color', '#1E90FF');
+
+					}); 
+			  }
+      }
+		
+      // 转账
+      function transfer(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+        eos.transfer(currentAccount.name, 'giveeostoken', '0.0001 EOS', 'scatter 转账测试').then(result => {
+          alert('result:'+JSON.stringify(result));
+        }).catch(error => {
+          alert('error:'+JSON.stringify(error));
+        });
+      }
+		
+		function gettea(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('linzongsheng', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 TEA", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
+							//getaccountinfo(account.name);
+						}).catch(error => {
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+						});
+					});
+      }
+		
+		
+		
+		function getloveyou(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
+							//getaccountinfo(account.name);
+						}).catch(error => {
+							var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+						});
+					});
+      }
+		
+		
+	function gethc(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('okkkkkkkkkkk', options).then(contract => {
+						contract.signup(currentAccount.name, "0 HC", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
+							//getaccountinfo(account.name);
+						}).catch(error => {
+						  var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+						});
+					});
+      }
+		
+		
+		
+		function getenb(){
+        if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        }
+        // alert(network.protocol+'://'+network.host);
+        var eos = scatter.eos(network, Eos);
+		var options = {
+                            authorization: currentAccount.name + '@' + currentAccount.authority,
+                            broadcast: true,
+                            sign: true
+                        };
+        eos.contract('eosenbpocket', options).then(contract => {
+						contract.signup(currentAccount.name, "0.0000 ENB", currentAccount.name, options).then(result => {
+          alert('领取成功，右下角“查询领取状态”可查询领取情况');
+							//getaccountinfo(account.name);
+						}).catch(error => {
+						 var str=JSON.stringify(error);
+							if (str.indexOf("signed up")) alert('您已经有这个代币了，把机会让给其他人哦~');
+							else if (str.indexOf("CPU")) alert('可能是CPU不足了哦');
+						  else alert('没有领取成功哦，要不咱们先试试别的？~');
+						});
+					});
+      }
+		
+		
+		function eosflare(){
+        	if (currentAccount == null) {
+            alert('请先登录 EOS 账户');
+        	}
+			window.location.href=('https://eosflare.io/account/'+currentAccount.name);
+      }
+    </script>
+  </head>
+  <body>
+	  <div class="mds-group">
+    <link href="https://static.medishares.net/css/market/qixi2018.css" rel="stylesheet">
+<div class="qixi">
+      
+      <div class="col-md-12"><button type="button" id="loginbtn" class="btn btn-finish btn-fill btn-primary btn-wd" onclick="login()">登录</button></div>
+      <br><br><br>
+	<div align="center"> <font color="pink"  size="5"> ~莫与糖果盒子~       </font>   </div>
+	
+	<br /><br />
+	<div align="center">    </div>
+	<div class="card">
+		  	<div class="row">
+		                          
+			                              
+			                                <div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+			                                <br /><br />
+			                                <div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getenb()" >一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
+												<br /><br />
+											<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getloveyou()">一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+				
+													<br /><br />
+											<div class="col-sm-5" align="center">
+												<div class="form-group">
+			                                        <label><font color="pink" size="3"> 领取399HC代币*          </font>  <br />   </label>
+													
+			                                        <button type="button" id="gethc" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gethc()">一键领取</button>
+													
+			                                    
+												
+													</div>
+										
+			                                </div>
+		                            	</div>
+		
+	</div>
+	<div class="my-protocol right-align">
+		<a href="javascript:;" id="all" onclick="eosflare()">查询领取状态</a>
+	</div>
+	<div style="clear: both;"></div>
+	<ul class="qixi-about">
+					<li>
+                    	<a href="https://coincreate.github.io/EOS_coincreate/candybox.html" target="_blank" title="莫与糖果盒子">莫与糖果盒子PC端</a>
+                    </li>
+                    <li>
+                        <h3>关于莫与糖果盒子</h3>
+                        <div>精选的糖果等你来领！只需要 点击一下 海量EOS糖果随你领！</div>
+						<div>莫与糖果盒子所有糖果均由第三方项目提供</div>
+						<div>PC端用户可以登录https://coincreate.github.io/EOS_coincreate/candybox.html通过scatter获取糖果</div>
+						<div>糖果盒子上币、升级合约、开发合约等商务合作请添加微信“SSAUTERNE”并备注“糖果盒子商务合作”</div>
+                    </li>
+					<li>
+                        <h3>关于TEA代币</h3>
+                        <ul class="application">
+                            <li>1.TEA是基于区块链3.0 EOS生态发行茶叶通证，持仓50万TEA以上可以参加每日快照，每日北京时间23点分红！</li>
+                       		<li>2.官方网站</li>
+                       		<li><a href="http://www.51jianzhanjun.cn" target="_blank" title="TEA 官网">http://www.51jianzhanjun.cn</a></li>
+							<li>3.公众号是 eos-tea</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于ENB代币</h3>
+                        <ul class="application">
+                            <li>ENB Platform</li>
+                            <li>一个基于EOS通证质押的服务平台</li>
+                            <li><a href="https://dapp.eosio.plus/" target="_blank" title="ENB Platform">https://dapp.eosio.plus/</a></li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于LOVEYOU代币</h3>
+                        <ul class="application">
+                            <li>LOVEYOU是基于区块链 3.0 EOS主网发行的生态币， 致力于满足人们对爱情美好的向往，满足人们精神生活中各种场景表达爱的需要，致力于公益活动传递爱。在恋爱、生日、婚庆、纪念日、过年过节等喜庆的日子，使用LOVEYOU表达爱、享受各种高品质服务。并通过持有LOVEYOU享有其升值的权益。</li>
+                        </ul>
+                    </li>
+					<li>
+                        <h3>关于HC代币</h3>
+                        <ul class="application">
+                            <li>Health Chain其代币HC对接中医养生、养发、美容、健身、娱乐、旅游、健康饮食等实体产品与服务，适时启动中医养生课堂讲座和社区商城，社区商城销售的金额将用于持币者分红，各超级合伙人将成为中医养生产品各级代理商，分享Health chain生态事业发展红利，适时启动线下实体店对接。</li>
+							<li>现诚邀超级合伙人若干：</li>
+							<li>微信社群群主(群员人数100人以上)有意建社群的朋友，联系微信：hongye05231</li>
+							
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>代币领取注意事项</h3>
+                        <ul class="application">
+                            <li>1.后面带有“*”标志的项目，领取空投这个过程会占用账户RAM用以领取代币</li>
+							<li>2.后面带有“*”标志的项目，领取空投会占用大概0.24KiB RAM资源</li>
+							<li>3.后面带有“*”标志的项目，领取空投是即时到账</li>
+							<li>4.后面带有“*”标志的项目，通过声明（signup）操作后，即可获得代币</li>
+							<li>5.“莫与糖果盒子”由莫与独立开发，一切数据由本人在北京时间2018.10.12测试得出，不保证在后续没有变动。关注“深入浅出EOS”公众号，即可获取更多有趣的DAPP哦。</li>
+							<li>6.由于用户填写错误造成的损失本DApp概不负责</li>
+							<li>7.后面带有“*”标志的项目，空投限没有该代币的EOS账户领取</li>
+                        </ul>
+                    </li>
+                    
+                   
+                    <li>
+                        <h3>关于作者</h3>
+                        <div>关于“莫与一键发币”或者“莫与糖果盒子”。任何问题可以通过公众号“深入浅出EOS”联系原作者莫与。</div>
+                    </li>
+                </ul>
+</div>
+</div>
+  
+  </body>
+</html>
