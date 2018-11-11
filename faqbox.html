@@ -110,7 +110,7 @@
 		
 		
 		
-		function getloveyou(){
+		function getfaq(){
         if (currentAccount == null) {
             alert('请先登录 EOS 账户');
         }
@@ -121,8 +121,8 @@
                             broadcast: true,
                             sign: true
                         };
-        eos.contract('okkkkkkkkkkk', options).then(contract => {
-						contract.signup(currentAccount.name, "0 LOVEYOU", currentAccount.name, options).then(result => {
+        eos.contract('answerandeos', options).then(contract => {
+						contract.signup(currentAccount.name, "0 FAQ", currentAccount.name, options).then(result => {
           alert('领取成功，右下角“查询领取状态”可查询领取情况');
 							//getaccountinfo(account.name);
 						}).catch(error => {
@@ -209,11 +209,11 @@
 		  	<div class="row">
 		                          
 			                              
-			                                <div class="col-sm-5" align="center">
+			                                <div class="col-sm-5 col-lg-12" align="center">
 												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取200TEA代币*          </font>  <br />   </label>
+			                                        <label><font color="pink" size="3"> 领取111.1111FAQ代币*          </font>  <br />   </label>
 													
-			                                        <button type="button" id="gettea" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gettea()">一键领取</button>
+			                                        <button type="button" id="getfaq" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getfaq()">一键领取</button>
 													
 			                                    
 												
@@ -221,43 +221,9 @@
 										
 			                                </div>
 			                                <br /><br />
-			                                <div class="col-sm-5" align="center">
-												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取100ENB代币*          </font>  <br />   </label>
-													
-			                                        <button type="button" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getenb()" >一键领取</button>
-													
-			                                    
-												
-													</div>
-										
-			                                </div>
+			                               
 				
-												<br /><br />
-											<div class="col-sm-5" align="center">
-												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取9999LOVEYOU*          </font>  <br />   </label>
-													
-			                                        <button type="button" id="getloveyou" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="getloveyou()">一键领取</button>
-													
-			                                    
-												
-													</div>
-										
-			                                </div>
-				
-													<br /><br />
-											<div class="col-sm-5" align="center">
-												<div class="form-group">
-			                                        <label><font color="pink" size="3"> 领取399HC代币*          </font>  <br />   </label>
-													
-			                                        <button type="button" id="gethc" class='btn btn-finish btn-fill btn-primary btn-wd' onclick="gethc()">一键领取</button>
-													
-			                                    
-												
-													</div>
-										
-			                                </div>
+									
 		                            	</div>
 		
 	</div>
