@@ -196,8 +196,8 @@
 		                                
 		                                    
 												
-												<h4 align=center>检测代币符号是否已经被注册流程:</h4>
-												<font>1.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号</br>（例：MOYU）</br>2.若无回复，则可以注册</br>3.若回复“已被注册”，则不可再注册</font>
+												<h4 align=center>EOS发行代币简介</h4>
+												<font>1.EOS代币区块链本身符号不唯一，利用不同的合约可以发行相同符号代币。</br>例如：目前有两种EETH代币，他们使用部署的合约来做区分</br>2.利用莫与一键发币DAPP发行代币符号唯一</br>3.利用莫与一键发币的成本比自己部署新合约便宜5倍</font>
 							<h4 align=center>对于发币数量精度说明:</h4>
 												<font>1.发币数量的精度需要按需填写！</br>例如：</br>若发10个MOYU，则MOYU币总量为10，最小分割为一个币，不存在0.1这样的分割。</br>再例如：</br>发10.000个MOYU，则MOYU币总量为10，最小分割为0.001个MOYU。</font>
 												
@@ -210,8 +210,7 @@
 		                            <div class="tab-pane" id="description">
 		                                
 										<h4 align=center>用户须知</h4>
-										<h5>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</br>2.用户确认之前所填信息无误即可点击右下角按钮进行发币！</br>3.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</br>4.转账成功后币即可到账，可通过eosflare.io进行查询</br>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</br>6.由于用户填写错误造成的损失本DApp概不负责</h5>br>
-										※7.EOS代币本身的符号是非唯一的，即使用新的合约重新部署则可以发行相同符号的代币。（但是会消耗大量RAM，成本比较高，大约是通过莫与一键发币的13倍）</h5>
+										<h5>1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦</br>2.用户确认之前所填信息无误即可点击右下角按钮进行发币！</br>3.若右下角的发币按钮无反应，则首页账户名填写格式有误，请检查首尾是否有多余空格</br>4.转账成功后币即可到账，可通过eosflare.io进行查询</br>5.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的详细教程。</br>6.由于用户填写错误造成的损失本DApp概不负责</h5>
 										
 		                            </div>
 		                        </div>
@@ -222,7 +221,7 @@
 										<script language="javascript">
 											function MsgBox() //声明标识符
 											{
-											alert("发币须知：\n1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦\n2.用户需确认MEMO无误即可自行进行转账（例如通过钱包app或者交易所提币）\n3.转账成功后币即可到账，可通过eosflare.io进行查询\n4.用户可以通过PocketEOS钱包、TokenPocket钱包、麦子钱包等自助添加您所发行的代币。添加后可在钱包中显示并转账。\n5.用“莫与一键发币”发出来的币都是基于“okkkkkkkkkkk”合约。请使用者注意\n6.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的教程。\n"); //弹出对话框
+											alert("发币须知：\n1.莫与一键发币DApp发币只需3EOS，价格比自己发币便宜了13倍哦\n2.用户需确认MEMO无误即可自行进行转账（例如通过钱包app或者交易所提币）\n3.转账成功后币即可到账，可通过eosflare.io进行查询\n4.用户可以通过PocketEOS钱包、TokenPocket钱包、麦子钱包等自助添加您所发行的代币。添加后可在钱包中显示并转账。\n4.关注“深入浅出EOS”公众号，后台回复“钱包显示”即可获取在钱包中显示代币的教程。\n5.关注“深入浅出EOS”公众号，后台回复您想发行的币的符号（例：MOYU），若回复“已被注册”，则不可再注册。若无回复，则可以注册。"); //弹出对话框
 											}
 											</script>
 		                            </div>
@@ -345,8 +344,8 @@
 					g_eos.getTableRows(true, contract, scope, table, "",lower ,-1, 1, function (error, data) {
 					if (error == null) {
 						var cnt = data["rows"].length;
-						if (cnt == 0){ $("#alr").hide(); alead=false;}
-						else {document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
+						if (cnt == 0){document.getElementById('alr').style.color = "green";document.getElementById('alr').innerText=$('#inp3').val()+"可以注册";$("#alr").show();alead=false;}
+						else {document.getElementById('alr').style.color = "red";document.getElementById('alr').innerText=$('#inp3').val()+"已被注册";$("#alr").show();alead=true;}
 						//$("#inp3").html(JSON.stringify(data, null, 2));
 						//document.getElementById("inp2").value=(((data["rows"][0]["balance"]).split(" ")[0])+' '+lower);
 					} else {
@@ -355,6 +354,7 @@
 					}
 				})
 			}	
+		
 		
 $(function () {
 	var isTP = tp.isConnected();
