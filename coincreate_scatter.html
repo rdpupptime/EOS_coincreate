@@ -132,7 +132,7 @@
         // alert(network.protocol+'://'+network.host);
 		var memo = '1-' + $('#inp1').val() + '-' + $('#inp2').val() + '-' + $('#inp3').val();
         var eos = scatter.eos(network, Eos);
-        eos.transfer(currentAccount.name, 'emmmmmmmmmmm', '3.0000 EOS', memo).then(result => {
+        eos.transfer(currentAccount.name, 'emmmmmmmmmmm', '0.0000 EOS', memo).then(result => {
           //alert('result:'+JSON.stringify(result));
           alert('发币成功！需要在钱包中显示代币的用户请根据页面下方提示在钱包中自助添加代币');
 
